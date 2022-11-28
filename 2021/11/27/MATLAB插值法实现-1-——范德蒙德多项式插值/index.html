@@ -29,15 +29,15 @@
 <meta property="og:site_name" content="柒月の風灬">
 <meta property="og:description" content="写在前面前端时间忙着考试，大作业还有美赛校选，一拖再拖，万年一更的史蒂夫终于更新了orz!!! 算法原理当精确函数 y &#x3D; f(x) 非常复杂或未知时，在区间[a,b]上一系列节点x0,x1,x2,……xn处测得函数值f(x0),f(x1),f(x2),……,f(xn),   由此构造一个简单的简单易算的近似函数 g(x) ≈ f(x)，满足条件g(xi)&#x3D;f(xi) (i&#x3D;0,1,2…,n)。这">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://lrz266ouo.github.io/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BEb.jpg">
-<meta property="og:image" content="http://lrz266ouo.github.io/images/%E8%8C%83%E5%BE%B7%E8%92%99%E5%BE%B7%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC%E4%B8%8E%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%B9%E6%AF%94%E5%9B%BE%E5%83%8F.jpg">
+<meta property="og:image" content="http://lrz266ouo.github.io/images/屏幕截图b.jpg">
+<meta property="og:image" content="http://lrz266ouo.github.io/images/范德蒙德多项式插值与目标函数的对比图像.jpg">
 <meta property="article:published_time" content="2021-11-27T15:38:26.000Z">
 <meta property="article:modified_time" content="2021-12-10T13:40:18.000Z">
 <meta property="article:author" content="St3ve Lee">
 <meta property="article:tag" content="MATLAB">
 <meta property="article:tag" content="插值法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://lrz266ouo.github.io/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BEb.jpg">
+<meta name="twitter:image" content="http://lrz266ouo.github.io/images/屏幕截图b.jpg">
 
 <link rel="canonical" href="http://lrz266ouo.github.io/2021/11/27/MATLAB%E6%8F%92%E5%80%BC%E6%B3%95%E5%AE%9E%E7%8E%B0-1-%E2%80%94%E2%80%94%E8%8C%83%E5%BE%B7%E8%92%99%E5%BE%B7%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC/">
 
@@ -253,13 +253,11 @@
 </ul>
 <p>对于未知的函数解析式，但已知一些插值点的函数值，我们可以找到一个次数不超过n的插值多项式：</p>
 <pre><code>f(x) = an*x^n+a(n-1)*x^(n-1)+...+a1*x+a0
-</code></pre>
-<p>上式f(x)称为x的n次插值多项式。  </p>
+</code></pre><p>上式f(x)称为x的n次插值多项式。  </p>
 <p>将n+1个点带入，即可得到n+1个插值多项式。</p>
-<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BEb.jpg" alt="书上原理P23"></p>
+<p><img src="/images/屏幕截图b.jpg" alt="书上原理P23"></p>
 <h3 id="话不多说，上代码"><a href="#话不多说，上代码" class="headerlink" title="话不多说，上代码"></a>话不多说，上代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close</span><br><span class="line"></span><br><span class="line">%% 初始化参数</span><br><span class="line">a = 0;                      % 左边界</span><br><span class="line">b = 20;                     % 右边界</span><br><span class="line">c = 2;</span><br><span class="line">d = 0.8;</span><br><span class="line">e = -1;</span><br><span class="line">f = 1.5;</span><br><span class="line">n = 10;                     % [a,b]区间内平均划分数量</span><br><span class="line">xi = linspace(a,b,n+1);     % 在[a,b]之间共取n+1个数据点（中间有n-1个）</span><br><span class="line">yi = c*sin(d*xi)+e*cos(f*xi);   % 准确的函数值</span><br><span class="line">len = length(xi);           % 向量xi的长度</span><br><span class="line">plot(xi,yi,<span class="string">&#x27;o&#x27;</span>);            % 绘制散点图</span><br><span class="line">hold on</span><br><span class="line">resX0 = xi(1):0.01:xi(end);</span><br><span class="line">resY0 = c*sin(d*resX0)+e*cos(f*resX0);</span><br><span class="line">h0 = plot(resX0,resY0,<span class="string">&#x27;k&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;L(x)与f(x)的对比图像&#x27;</span>)</span><br><span class="line">hold on</span><br><span class="line"></span><br><span class="line">%% 范德蒙德多项式插值</span><br><span class="line">A = vander(xi);             % 利用范德蒙德矩阵生成插值多项式系数矩阵</span><br><span class="line">resY1 = yi<span class="string">&#x27;;</span></span><br><span class="line"><span class="string">B = [A,resY1];              % 生成增广矩阵</span></span><br><span class="line"><span class="string">C = rref(B);                % 化简，解方程组</span></span><br><span class="line"><span class="string">D = C(:,end);</span></span><br><span class="line"><span class="string">resX1 = xi(1):0.01:xi(end); % 绘制拟合曲线</span></span><br><span class="line"><span class="string">resY1 = polyval(D,resX1);   % 写出拟合曲线方程</span></span><br><span class="line"><span class="string">h1 = plot(resX1,resY1,&#x27;</span>m<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">hold on</span></span><br><span class="line"><span class="string">legend([h0,h1],&#x27;</span>f(x)=c*sin(d*x)+e*cos(f*x)<span class="string">&#x27;,&#x27;</span>范德蒙德多项式插值<span class="string">&#x27;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">%% 计算平均误差</span></span><br><span class="line"><span class="string">m = 20;                     % 实验点的个数</span></span><br><span class="line"><span class="string">testxi = linspace(a,b,m);   % 在[a,b]之间共取m个实验点</span></span><br><span class="line"><span class="string">testyi = c*sin(d*testxi)+e*cos(f*testxi);</span></span><br><span class="line"><span class="string">testlen = length(testxi);</span></span><br><span class="line"><span class="string">testY1 = polyval(D,testxi);</span></span><br><span class="line"><span class="string">testerror1 = testyi-testY1;</span></span><br><span class="line"><span class="string">% disp(testerror1);</span></span><br><span class="line"><span class="string">Aver_error = 0;             % 平均误差</span></span><br><span class="line"><span class="string">for i=1:testlen</span></span><br><span class="line"><span class="string">    Aver_error = Aver_error+abs(testerror1(i));</span></span><br><span class="line"><span class="string">end</span></span><br><span class="line"><span class="string">Aver_error = Aver_error/testlen;</span></span><br><span class="line"><span class="string">disp(Aver_error);</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/images/%E8%8C%83%E5%BE%B7%E8%92%99%E5%BE%B7%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC%E4%B8%8E%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%B9%E6%AF%94%E5%9B%BE%E5%83%8F.jpg" alt="lab1_1"></p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/images/范德蒙德多项式插值与目标函数的对比图像.jpg" alt="lab1_1"></p>
 
     </div>
 
@@ -554,6 +552,8 @@
 
 
 
+
+  
 
   
 

@@ -76,7 +76,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -210,7 +322,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.4k</span>
+              <span>7.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -229,9 +341,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="KNN算法概述"><a href="#KNN算法概述" class="headerlink" title="KNN算法概述"></a>KNN算法概述</h3><p>KNN全称K-Nearest Neighbors，其原理是当预测一个新的值$x$的时候，根据它举例最近的$K$个点是什么类别来判断$x$属于哪个类别。</p>
-<h4 id="距离计算"><a href="#距离计算" class="headerlink" title="距离计算"></a>距离计算</h4><p>度量空间中点距离，有曼哈顿距离计算，欧氏距离计算等。以欧氏距离为例，在二维空间两个点的欧氏距离计算公式为<br>$$\rho=\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}}$$</p>
-<p>而当拓展到多维空间后，计算公式则为<br>$$d(x,y):=\sqrt{(x_1-y_1)^{2}+(x_2-y_2)^{2}+\cdots+(x_n-y_n)^{2}}=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^{2}}$$</p>
+          <h3 id="KNN算法概述"><a href="#KNN算法概述" class="headerlink" title="KNN算法概述"></a>KNN算法概述</h3><p>KNN全称K-Nearest Neighbors，其原理是当预测一个新的值<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 572 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></svg></mjx-container>的时候，根据它举例最近的<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"/></g></g></g></svg></mjx-container>个点是什么类别来判断<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 572 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></svg></mjx-container>属于哪个类别。</p>
+<h4 id="距离计算"><a href="#距离计算" class="headerlink" title="距离计算"></a>距离计算</h4><p>度量空间中点距离，有曼哈顿距离计算，欧氏距离计算等。以欧氏距离为例，在二维空间两个点的欧氏距离计算公式为</p>
+<script type="math/tex; mode=display">\rho=\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}}</script><p>而当拓展到多维空间后，计算公式则为</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/11/28/Stanford-CS231n-Lab1-kNN/#more" rel="contents">
@@ -622,10 +734,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="分段Hermite插值的公式"><a href="#分段Hermite插值的公式" class="headerlink" title="分段Hermite插值的公式"></a>分段Hermite插值的公式</h3><p><img src="/images/%E5%85%AC%E5%BC%8F.jpg" alt="Hermite"></p>
+          <h3 id="分段Hermite插值的公式"><a href="#分段Hermite插值的公式" class="headerlink" title="分段Hermite插值的公式"></a>分段Hermite插值的公式</h3><p><img src="/images/公式.jpg" alt="Hermite"></p>
 <p>将上述公式使用MATLAB实现</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close</span><br><span class="line"></span><br><span class="line">%% 初始化参数</span><br><span class="line">a = 0;                      % 左边界</span><br><span class="line">b = 20;                     % 右边界</span><br><span class="line">c = 2;</span><br><span class="line">d = 0.8;</span><br><span class="line">e = -1;</span><br><span class="line">f = 1.5;</span><br><span class="line">n = 10;                     % [a,b]区间内平均划分数量</span><br><span class="line">xi = linspace(a,b,n+1);     % 在[a,b]之间共取n+1个数据点（中间有n-1个）</span><br><span class="line">yi = c*sin(d*xi)+e*cos(f*xi);   % 准确的函数值</span><br><span class="line">len = length(xi);           % 向量xi的长度</span><br><span class="line">plot(xi,yi,<span class="string">&#x27;o&#x27;</span>);            % 绘制散点图</span><br><span class="line">hold on</span><br><span class="line">resX0 = xi(1):0.01:xi(end);</span><br><span class="line">resY0 = c*sin(d*resX0)+e*cos(f*resX0);</span><br><span class="line">h0 = plot(resX0,resY0,<span class="string">&#x27;k&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;L(x)与f(x)的对比图像&#x27;</span>)</span><br><span class="line">hold on</span><br><span class="line">m = 20;                     % 实验点的个数</span><br><span class="line">testxi = zeros(1,m);</span><br><span class="line">testyi = zeros(1,m);</span><br><span class="line">testY4 = zeros(1,m);</span><br><span class="line">Aver_error = 0;             % 平均误差</span><br><span class="line"></span><br><span class="line">%% 分段三次Hermite插值</span><br><span class="line">syms t</span><br><span class="line">defivative_a = <span class="built_in">limit</span>(c*sin(d*t)+e*cos(f*t),a);  % 函数f(x)在a点的一阶导数 </span><br><span class="line">defivative_b = <span class="built_in">limit</span>(c*sin(d*t)+e*cos(f*t),b);  % 函数f(x)在b点的一阶导数</span><br><span class="line">[~,number] = size(xi);                          % 获取输入xi的大小1*number</span><br><span class="line">delta_h = zeros(1,number-1);                    % 给delta_h分配数组大小1*(number-1)，并全部初始化为0</span><br><span class="line">delta_f = zeros(1,number-1);                    % 给delta_f分配数组大小1*(number-1)，并全部初始化为0</span><br><span class="line">lambda_ = zeros(1,number-2);                    % 给lambda_分配数组大小1*(number-2)，并全部初始化为0</span><br><span class="line">miu_ = zeros(1,number-2);                       % 给miu_分配数组大小1*(number-2)，并全部初始化为0</span><br><span class="line">sigma_ = zeros(1,number-2);                     % 给sigma_分配数组大小1*(number-2)，并全部初始化为0</span><br><span class="line">X = zeros(number-2,number-2);                   % 初始化系数矩阵X，(n-2)*(n-2)</span><br><span class="line">Y = zeros(number-2,1);                          % 初始化系数矩阵Y，(n-2)*1</span><br><span class="line">% 计算delta_h, delta_f的值</span><br><span class="line"><span class="keyword">for</span> i=1:(number-1)</span><br><span class="line">    delta_h(i) = xi(i+1)-xi(i);</span><br><span class="line">    delta_f(i) = (yi(i+1)-yi(i))/delta_h(i);</span><br><span class="line">end</span><br><span class="line">% 计算lambda_, miu_, sigma_的值</span><br><span class="line"><span class="keyword">for</span> i=1:(number-2)</span><br><span class="line">    lambda_(1,i) = delta_h(1,i+1)/(delta_h(1,i+1)+delta_h(1,i));</span><br><span class="line">    miu_(1,i) = 1-lambda_(1,i);</span><br><span class="line">    sigma_(1,i) = 3*(lambda_(1,i)*delta_f(1,i)+miu_(1,i)*delta_f(1,i+1));</span><br><span class="line">end</span><br><span class="line">% 分三种情况，i=1, i=2:n-2, i=n-1</span><br><span class="line">X(1,1) = 2;</span><br><span class="line">X(1,2) = miu_(1,1);</span><br><span class="line">Y(1,1) = sigma_(1,1)-lambda_(1,1)*defivative_a;</span><br><span class="line"><span class="keyword">for</span> i=2:number-3</span><br><span class="line">    Y(i,1) = sigma_(1,i);</span><br><span class="line">    X(i,i-1) = lambda_(1,i);</span><br><span class="line">    X(i,i) = 2;</span><br><span class="line">    X(i,i+1) = miu_(1,i);</span><br><span class="line">end</span><br><span class="line">X(number-2,number-3) = lambda_(1,number-2);</span><br><span class="line">X(number-2,number-2) = 2;</span><br><span class="line">Y(number-2,1) = sigma_(1,number-2)-miu_(1,number-2)*defivative_b;</span><br><span class="line">% 计算A的逆，A*B</span><br><span class="line">matrix1 = X\Y;</span><br><span class="line">matrix2 = zeros(1,number);</span><br><span class="line">matrix2(1,1) = defivative_a;</span><br><span class="line">matrix2(1,number) = defivative_b;</span><br><span class="line"><span class="keyword">for</span> i=2:number-1</span><br><span class="line">    matrix2(1,i) = matrix1(i-1,1);</span><br><span class="line">end</span><br><span class="line"><span class="keyword">for</span> i=1:number-1</span><br><span class="line">    % 获取相邻两点之间的插值函数</span><br><span class="line">    resX5 = linspace(xi(1,i),xi(1,i+1));</span><br><span class="line">    testxi(i*2-1) = xi(i);</span><br><span class="line">    testxi(i*2) = (xi(i)+xi(i+1))/2;</span><br><span class="line">    s1 = yi(1,i).*((resX5-xi(1,i+1)).^2).*(delta_h(1,i)+2.*(resX5-xi(1,i)))./(delta_h(1,i).^3);</span><br><span class="line">    s2 = yi(1,i+1).*((resX5-xi(1,i)).^2).*(delta_h(1,i)+2.*(xi(1,i+1)-resX5))./(delta_h(1,i).^3);</span><br><span class="line">    s3 = matrix2(1,i).*((resX5-xi(1,i+1)).^2).*(resX5-xi(1,i))./(delta_h(1,i).^2);</span><br><span class="line">    s4 = matrix2(1,i+1).*((resX5-xi(1,i)).^2).*(resX5-xi(1,i+1))./(delta_h(1,i).^2);</span><br><span class="line">    resY5 = s1+s2+s3+s4;</span><br><span class="line">    testyi(i*2-1) = c*sin(d*testxi(i*2-1))+e*cos(f*testxi(i*2-1));</span><br><span class="line">    s1_ = yi(1,i).*((testxi(i*2-1)-xi(1,i+1)).^2).*(delta_h(1,i)+2.*(testxi(i*2-1)-xi(1,i)))./(delta_h(1,i).^3);</span><br><span class="line">    s2_ = yi(1,i+1).*((testxi(i*2-1)-xi(1,i)).^2).*(delta_h(1,i)+2.*(xi(1,i+1)-testxi(i*2-1)))./(delta_h(1,i).^3);</span><br><span class="line">    s3_ = matrix2(1,i).*((testxi(i*2-1)-xi(1,i+1)).^2).*(testxi(i*2-1)-xi(1,i))./(delta_h(1,i).^2);</span><br><span class="line">    s4_ = matrix2(1,i+1).*((testxi(i*2-1)-xi(1,i)).^2).*(testxi(i*2-1)-xi(1,i+1))./(delta_h(1,i).^2);</span><br><span class="line">    testY4(i*2-1) = s1_+s2_+s3_+s4_;</span><br><span class="line">    testyi(i*2) =  c*sin(d*testxi(i*2))+e*cos(f*testxi(i*2));</span><br><span class="line">    s1__ = yi(1,i).*((testxi(i*2)-xi(1,i+1)).^2).*(delta_h(1,i)+2.*(testxi(i*2)-xi(1,i)))./(delta_h(1,i).^3);</span><br><span class="line">    s2__ = yi(1,i+1).*((testxi(i*2)-xi(1,i)).^2).*(delta_h(1,i)+2.*(xi(1,i+1)-testxi(i*2)))./(delta_h(1,i).^3);</span><br><span class="line">    s3__ = matrix2(1,i).*((testxi(i*2)-xi(1,i+1)).^2).*(testxi(i*2)-xi(1,i))./(delta_h(1,i).^2);</span><br><span class="line">    s4__ = matrix2(1,i+1).*((testxi(i*2)-xi(1,i)).^2).*(testxi(i*2)-xi(1,i+1))./(delta_h(1,i).^2);</span><br><span class="line">    testY4(i*2) = s1__+s2__+s3__+s4__;</span><br><span class="line">    h5 = plot(resX5,resY5,<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    hold on</span><br><span class="line">end</span><br><span class="line">legend([h0,h5],<span class="string">&#x27;f(x)=c*sin(d*x)+e*cos(f*x)&#x27;</span>,<span class="string">&#x27;分段三次Hermite插值&#x27;</span>)</span><br><span class="line"></span><br><span class="line">%% 计算平均误差</span><br><span class="line"><span class="keyword">for</span> i=1:m</span><br><span class="line">   Aver_error = Aver_error+abs(testyi(i)-testY4(i)); </span><br><span class="line">end</span><br><span class="line">Aver_error = Aver_error/m;</span><br><span class="line">disp(Aver_error)</span><br></pre></td></tr></table></figure>
-
 <h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3>
           <!--noindex-->
             <div class="post-button">
@@ -724,8 +835,7 @@
 
       
           <h3 id="这个比较简单，直接上代码（单纯的是因为没找到公式QwQ）"><a href="#这个比较简单，直接上代码（单纯的是因为没找到公式QwQ）" class="headerlink" title="这个比较简单，直接上代码（单纯的是因为没找到公式QwQ）"></a>这个比较简单，直接上代码（单纯的是因为没找到公式QwQ）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close</span><br><span class="line"></span><br><span class="line">%% 初始化参数</span><br><span class="line">a = 0;                      % 左边界</span><br><span class="line">b = 20;                     % 右边界</span><br><span class="line">c = 2;</span><br><span class="line">d = 0.8;</span><br><span class="line">e = -1;</span><br><span class="line">f = 1.5;</span><br><span class="line">n = 10;                     % [a,b]区间内平均划分数量</span><br><span class="line">xi = linspace(a,b,n+1);     % 在[a,b]之间共取n+1个数据点（中间有n-1个）</span><br><span class="line">yi = c*sin(d*xi)+e*cos(f*xi);   % 准确的函数值</span><br><span class="line">len = length(xi);           % 向量xi的长度</span><br><span class="line">plot(xi,yi,<span class="string">&#x27;o&#x27;</span>);            % 绘制散点图</span><br><span class="line">hold on</span><br><span class="line">resX0 = xi(1):0.01:xi(end);</span><br><span class="line">resY0 = c*sin(d*resX0)+e*cos(f*resX0);</span><br><span class="line">h0 = plot(resX0,resY0,<span class="string">&#x27;k&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;L(x)与f(x)的对比图像&#x27;</span>)</span><br><span class="line">hold on</span><br><span class="line">m = 20;                     % 实验点的个数</span><br><span class="line">testxi = zeros(1,m);</span><br><span class="line">testyi = zeros(1,m);</span><br><span class="line">testY4 = zeros(1,m);</span><br><span class="line">Aver_error = 0;             % 平均误差</span><br><span class="line"></span><br><span class="line">%% 分段线性插值</span><br><span class="line"><span class="keyword">for</span> i=1:len-1</span><br><span class="line">    resX4 = xi(i):0.01:xi(i+1);</span><br><span class="line">    testxi(i*2-1) = xi(i);</span><br><span class="line">    testxi(i*2) = (xi(i)+xi(i+1))/2;</span><br><span class="line">    resY4 = yi(i)*(resX4-xi(i+1))/(xi(i)-xi(i+1))+yi(i+1)*(resX4-xi(i))/(xi(i+1)-xi(i));</span><br><span class="line">    testyi(i*2-1) = c*sin(d*testxi(i*2-1))+e*cos(f*testxi(i*2-1));</span><br><span class="line">    testY4(i*2-1) = yi(i)*(testxi(i*2-1)-xi(i+1))/(xi(i)-xi(i+1))+yi(i+1)*(testxi(i*2-1)-xi(i))/(xi(i+1)-xi(i));</span><br><span class="line">    testyi(i*2) =  c*sin(d*testxi(i*2))+e*cos(f*testxi(i*2));</span><br><span class="line">    testY4(i*2) = yi(i)*(testxi(i*2)-xi(i+1))/(xi(i)-xi(i+1))+yi(i+1)*(testxi(i*2)-xi(i))/(xi(i+1)-xi(i));</span><br><span class="line">    h4 = plot(resX4,resY4,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line">    hold on</span><br><span class="line">end</span><br><span class="line">legend([h0,h4],<span class="string">&#x27;f(x)=c*sin(d*x)+e*cos(f*x)&#x27;</span>,<span class="string">&#x27;分段线性插值&#x27;</span>)</span><br><span class="line"></span><br><span class="line">%% 计算平均误差</span><br><span class="line"><span class="keyword">for</span> i=1:m</span><br><span class="line">   Aver_error = Aver_error+abs(testyi(i)-testY4(i)); </span><br><span class="line">end</span><br><span class="line">Aver_error = Aver_error/m;</span><br><span class="line">disp(Aver_error)</span><br></pre></td></tr></table></figure>
-
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/images/%E5%88%86%E6%AE%B5%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC%E4%B8%8E%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%B9%E6%AF%94%E5%9B%BE%E5%83%8F.jpg" alt="lab1_4"></p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/images/分段线性插值与目标函数的对比图像.jpg" alt="lab1_4"></p>
 
       
     </div>
@@ -821,10 +931,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="牛顿插值的公式"><a href="#牛顿插值的公式" class="headerlink" title="牛顿插值的公式"></a>牛顿插值的公式</h3><p><img src="/images/%E7%89%9B%E9%A1%BF%E6%8F%92%E5%80%BC%E6%B3%95.jpg" alt="牛顿插值"></p>
+          <h3 id="牛顿插值的公式"><a href="#牛顿插值的公式" class="headerlink" title="牛顿插值的公式"></a>牛顿插值的公式</h3><p><img src="/images/牛顿插值法.jpg" alt="牛顿插值"></p>
 <p>将上述公式使用MATLAB实现</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close</span><br><span class="line"></span><br><span class="line">%% 初始化参数</span><br><span class="line">a = 0;                      % 左边界</span><br><span class="line">b = 20;                     % 右边界</span><br><span class="line">c = 2;</span><br><span class="line">d = 0.8;</span><br><span class="line">e = -1;</span><br><span class="line">f = 1.5;</span><br><span class="line">n = 10;                     % [a,b]区间内平均划分数量</span><br><span class="line">xi = linspace(a,b,n+1);     % 在[a,b]之间共取n+1个数据点（中间有n-1个）</span><br><span class="line">yi = c*sin(d*xi)+e*cos(f*xi);   % 准确的函数值</span><br><span class="line">len = length(xi);           % 向量xi的长度</span><br><span class="line">plot(xi,yi,<span class="string">&#x27;o&#x27;</span>);            % 绘制散点图</span><br><span class="line">hold on</span><br><span class="line">resX0 = xi(1):0.01:xi(end);</span><br><span class="line">resY0 = c*sin(d*resX0)+e*cos(f*resX0);</span><br><span class="line">h0 = plot(resX0,resY0,<span class="string">&#x27;k&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;L(x)与f(x)的对比图像&#x27;</span>)</span><br><span class="line">hold on</span><br><span class="line"></span><br><span class="line">%% 牛顿插值</span><br><span class="line">matrix0 = zeros(len,len);</span><br><span class="line">% 对差商表第一列赋值</span><br><span class="line"><span class="keyword">for</span> i=1:len</span><br><span class="line">    matrix0(i) = yi(i);</span><br><span class="line">end</span><br><span class="line">% 求差商表，从0阶开始，但从1维开始存储</span><br><span class="line"><span class="keyword">for</span> i=2:len</span><br><span class="line">    <span class="keyword">for</span> j=i:len</span><br><span class="line">        matrix0(j,i) = (matrix0(j,i-1)-matrix0(j-1,i-1))/(xi(j)-xi(j-i+1));</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">% disp(<span class="string">&#x27;差商表：&#x27;</span>);</span><br><span class="line">% disp(matrix0);</span><br><span class="line">% 求牛顿插值多项式</span><br><span class="line">z = sym(<span class="string">&#x27;z&#x27;</span>);</span><br><span class="line">resY3 = 0;</span><br><span class="line"><span class="keyword">for</span> k=2:n</span><br><span class="line">    temp3 = 1;</span><br><span class="line">    <span class="keyword">for</span> j=1:k-1</span><br><span class="line">        temp3 = temp3*(z-xi(j));</span><br><span class="line">        % disp(temp3)</span><br><span class="line">    end</span><br><span class="line">    resY3 = matrix0(k,k)*temp3+resY3;</span><br><span class="line">    % disp(resY3)</span><br><span class="line">end</span><br><span class="line">resY3 = matrix0(1,1)+resY3;</span><br><span class="line">testY3 = resY3;</span><br><span class="line">resX3 = xi(1):0.01:xi(end);</span><br><span class="line">resY3 = subs(resY3,z,resX3);</span><br><span class="line">h3 = plot(resX3,resY3,<span class="string">&#x27;g&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">legend([h0,h3],<span class="string">&#x27;f(x)=c*sin(d*x)+e*cos(f*x)&#x27;</span>,<span class="string">&#x27;牛顿插值&#x27;</span>)</span><br><span class="line"></span><br><span class="line">%% 计算平均误差</span><br><span class="line">m = 20;                     % 实验点的个数</span><br><span class="line">testxi = linspace(a,b,m);   % 在[a,b]之间共取m个实验点</span><br><span class="line">testyi = c*sin(d*testxi)+e*cos(f*testxi);</span><br><span class="line">testlen = length(testxi);</span><br><span class="line">testY3 = subs(testY3,z,testxi);</span><br><span class="line">testerror3 = testyi-testY3;</span><br><span class="line">% disp(testerror3);</span><br><span class="line">Aver_error = 0;             % 平均误差</span><br><span class="line"><span class="keyword">for</span> i=1:testlen</span><br><span class="line">    Aver_error = Aver_error+abs(testerror3(i));</span><br><span class="line">end</span><br><span class="line">Aver_error = Aver_error/testlen;</span><br><span class="line">disp(Aver_error);</span><br></pre></td></tr></table></figure>
-
 <h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3>
           <!--noindex-->
             <div class="post-button">
@@ -928,7 +1037,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="写在前面（哦，这次没有啊那没事了…）"><a href="#写在前面（哦，这次没有啊那没事了…）" class="headerlink" title="写在前面（哦，这次没有啊那没事了…）"></a><del>写在前面（哦，这次没有啊那没事了…）</del></h3><h3 id="插值问题详见前文，直接上公式"><a href="#插值问题详见前文，直接上公式" class="headerlink" title="插值问题详见前文，直接上公式"></a>插值问题详见前文，直接上公式</h3><p><img src="/images/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95.jpg" alt="拉格朗日"></p>
+          <h3 id="写在前面（哦，这次没有啊那没事了…）"><a href="#写在前面（哦，这次没有啊那没事了…）" class="headerlink" title="写在前面（哦，这次没有啊那没事了…）"></a><del>写在前面（哦，这次没有啊那没事了…）</del></h3><h3 id="插值问题详见前文，直接上公式"><a href="#插值问题详见前文，直接上公式" class="headerlink" title="插值问题详见前文，直接上公式"></a>插值问题详见前文，直接上公式</h3><p><img src="/images/拉格朗日插值法.jpg" alt="拉格朗日"></p>
 <p>将上述公式使用MATLAB实现（估计各位看官只关心这个…）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close</span><br><span class="line"></span><br><span class="line">%% 初始化参数</span><br><span class="line">a = 0;                      % 左边界</span><br><span class="line">b = 20;                     % 右边界</span><br><span class="line">c = 2;</span><br><span class="line">d = 0.8;</span><br><span class="line">e = -1;</span><br><span class="line">f = 1.5;</span><br><span class="line">n = 10;                     % [a,b]区间内平均划分数量</span><br><span class="line">xi = linspace(a,b,n+1);     % 在[a,b]之间共取n+1个数据点（中间有n-1个）</span><br><span class="line">yi = c*sin(d*xi)+e*cos(f*xi);   % 准确的函数值</span><br><span class="line">len = length(xi);           % 向量xi的长度</span><br><span class="line">plot(xi,yi,<span class="string">&#x27;o&#x27;</span>);            % 绘制散点图</span><br><span class="line">hold on</span><br><span class="line">resX0 = xi(1):0.01:xi(end);</span><br><span class="line">resY0 = c*sin(d*resX0)+e*cos(f*resX0);</span><br><span class="line">h0 = plot(resX0,resY0,<span class="string">&#x27;k&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;L(x)与f(x)的对比图像&#x27;</span>)</span><br><span class="line">hold on</span><br><span class="line"></span><br><span class="line">%% 拉格朗日插值</span><br><span class="line">u = [1 -xi(2)];             % u存放多项式系数</span><br><span class="line">under = (xi(1) - xi(2));</span><br><span class="line"><span class="keyword">for</span> k=3:len</span><br><span class="line">    v = [1 -xi(k)];         % v存放多次式系数</span><br><span class="line">    u = conv(u,v);          % conv代表对两个多项式相乘</span><br><span class="line">    under = under*(xi(1)-xi(k));</span><br><span class="line">end</span><br><span class="line">u = u/under;</span><br><span class="line">u = u*yi(1);</span><br><span class="line">temp1 = u;                  % 第一个项的结果</span><br><span class="line"></span><br><span class="line">under = 1;</span><br><span class="line"><span class="keyword">for</span> k=2:len</span><br><span class="line">    u = [1 -xi(1)];</span><br><span class="line">    under = (xi(k)-xi(1));</span><br><span class="line">    <span class="keyword">for</span> j=2:len</span><br><span class="line">        <span class="keyword">if</span> j~=k</span><br><span class="line">            v = [1 -xi(j)];</span><br><span class="line">            u = conv(u,v);</span><br><span class="line">            under = under*(xi(k)-xi(j));</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    u = u/under;</span><br><span class="line">    u = u*yi(k);</span><br><span class="line">    temp2 = u;</span><br><span class="line">    temp1 = temp1+temp2;</span><br><span class="line">end</span><br><span class="line">resX2 = xi(1):0.01:xi(end);</span><br><span class="line">resY2 = polyval(temp1,resX2);</span><br><span class="line">h2 = plot(resX2,resY2,<span class="string">&#x27;c&#x27;</span>);</span><br><span class="line">hold on</span><br><span class="line">legend([h0,h2],<span class="string">&#x27;f(x)=c*sin(d*x)+e*cos(f*x)&#x27;</span>,<span class="string">&#x27;拉格朗日插值&#x27;</span>)</span><br><span class="line"></span><br><span class="line">%% 计算平均误差</span><br><span class="line">m = 20;                     % 实验点的个数</span><br><span class="line">testxi = linspace(a,b,m);   % 在[a,b]之间共取m个实验点</span><br><span class="line">testyi = c*sin(d*testxi)+e*cos(f*testxi);</span><br><span class="line">testlen = length(testxi);</span><br><span class="line">testY2 = polyval(temp1,testxi);</span><br><span class="line">testerror2 = testyi-testY2;</span><br><span class="line">% disp(testerror2);</span><br><span class="line">Aver_error = 0;             % 平均误差</span><br><span class="line"><span class="keyword">for</span> i=1:testlen</span><br><span class="line">    Aver_error = Aver_error+abs(testerror2(i));</span><br><span class="line">end</span><br><span class="line">Aver_error = Aver_error/testlen;</span><br><span class="line">disp(Aver_error);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
@@ -1368,6 +1477,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
