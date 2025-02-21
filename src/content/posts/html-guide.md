@@ -111,6 +111,8 @@ inline元素通常用于为文本添加样式或为文本的一部分应用样�
 
 inline-block元素结合了块级元素和内联元素的特点。它允许元素出现在同一行中，还可以设置宽度和高度属性，而内联元素不支持这些属性。
 
+---
+
 :::note[Reference]
 - [3小时前端入门教程（HTML+CSS+JS）](https://www.bilibili.com/video/BV1BT4y1W7Aw)
 :::
