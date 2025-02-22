@@ -34,6 +34,4 @@ lang: ''
 
 ---
 
-:::note[Reference]
-- [天津大学课程共享计划](https://github.com/superpung/TJU-CourseSharing)
-:::
+::github{repo="superpung/TJU-CourseSharing"}
