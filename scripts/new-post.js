@@ -46,6 +46,14 @@ category: ''
 draft: false 
 lang: ''
 ---
+
+
+
+---
+
+:::note[Reference]
+- 
+:::
 `
 
 fs.writeFileSync(path.join(targetDir, fileName), content)
