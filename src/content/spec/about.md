@@ -2,12 +2,12 @@
   <div style="flex: 7; padding: 20px;">
     <h1 style="text-align: center; margin-top: 32px; margin-bottom: -10px">Runze Li</h1>
     <p style="text-align: center; margin-top: 24px; margin-bottom: -10px">
-      <a href="https://github.com/lllirunze">GitHub</a> | <a href="https://www.linkedin.com/in/runzeli2001/">LinkedIn</a> | <a href="https://stackoverflow.com/users/21977543/lllirunze">Stack Overflow</a> | <a href="/public/docs/resume.pdf">CV</a>
+      <a href="https://github.com/lllirunze">GitHub</a> | <a href="https://www.linkedin.com/in/runzeli2001/">LinkedIn</a> | <a href="https://stackoverflow.com/users/21977543/lllirunze">Stack Overflow</a> | <a href="/docs/resume.pdf">CV</a>
     </p>
     <p>I am a Master of Science student in Computer Science at New York University, focused on mastering code migration across platforms. My passion for badminton🏸 and billiards🎱 fuels my determination, and I'm always open to connecting for opportunities or inquiries. Feel free to <a href="mailto:lirunze.me@gmail.com">reach out!</a></p>
   </div>
   <div style="flex: 3; border-radius: 1rem; display: flex; justify-content: center; align-items: center;">
-    <img style="width: 300px; border-radius: 10%; object-fit: cover; border: 1px solid #ddd; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);" src="/public/profile/lllirunze.jpg" alt="Runze Li">
+    <img style="width: 300px; border-radius: 10%; object-fit: cover; border: 1px solid #ddd; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);" src="/profile/lllirunze.jpg" alt="Runze Li">
   </div>
 </div>
 
