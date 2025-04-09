@@ -1,7 +1,7 @@
 ---
-title: 雏鹰计划学习启动会
+title: 雏鹰计划-学习启动会
 published: 2025-03-24
-description: '从校园到职场'
+description: '从校园到职场。'
 image: ''
 tags: ['雏鹰计划']
 category: 'Guides'
