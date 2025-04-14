@@ -109,24 +109,24 @@ Git常用命令如下：
 
 ```shell
 # 工程准备
-git init 							# 在本地目录下新建项目仓库
+git init              # 在本地目录下新建项目仓库
 git [lfs] clone [URL] # 克隆远端工程到本地磁盘，如果所在的项目git服务器已经支持了git-lfs，对二进制文件进行了区别管理，那么克隆工程的时候务必使用git lfs clone，否则克隆操作无法下载到工程中的二进制文件导致工程内容不完整。
 
 # 新增、删除、移动文件到暂存区
-git add [file]											# 把文件添加到暂存区，此时还没有提交
-git rm [file] 											# 将指定文件彻底从当前分支的缓存区删除，因此它从当前分支的下一个提交快照中被删除
+git add [file]                      # 把文件添加到暂存区，此时还没有提交
+git rm [file]                       # 将指定文件彻底从当前分支的缓存区删除，因此它从当前分支的下一个提交快照中被删除
 git mv [old_file] [folder|new_file] # 用于移动文件，也可以用于重命名文件
 
 # 查看工作区
-git diff [version1] [version2] 							# 比较两个节点之间的差异
-git diff [branch1]..[branch2] 							# 比较两个分支之间的差异
-git diff --cached 													# 比较当前索引和上次提交之间的差异
+git diff [version1] [version2]              # 比较两个节点之间的差异
+git diff [branch1]..[branch2]               # 比较两个分支之间的差异
+git diff --cached                           # 比较当前索引和上次提交之间的差异
 git diff [branch1]..[branch2] --name-status # 比较两个分支之间的差异，只看文件列表
-git status 																	# 用于显示工作目录和暂存区的状态
+git status                                  # 用于显示工作目录和暂存区的状态
 
 # 提交更改的文件
-git commit 						# 将暂存区里的文件改动提交到本地的版本库
-git commit -am "xxx" 	# 一次性提交所有在暂存区改动的文件到版本库
+git commit            # 将暂存区里的文件改动提交到本地的版本库
+git commit -am "xxx"  # 一次性提交所有在暂存区改动的文件到版本库
 
 # 查看日志
 git log
@@ -135,29 +135,29 @@ git log
 git push [local_branch] [remote_branch] # 在使用git commit命令将自己的修改从暂存区提交到本地版本库后，可以使用push将本地版本库的分支推送到远程服务器上对应的分支
 
 # 分支管理
-git branch 																			# 查看本地工程的所有git分支名称
-git branch -r 																	# 查看远端服务器上的分支
-git branch -a 																	# 查看本地和远端的所有分支
-git branch [branch] 														# 新建分支（但不会切换到新分支）
-git branch -d [branch] 													# 删除分支
-git branch -D [branch] 													# 强制删除分支
-git branch -d -r [branch] 											# 删除远端分支
-git checkout [branch] 													# 切换已有分支
-git checkout -b [branch] 												# 新建分支（自动切换到新分支）
-git checkout -f [branch] 												# 强制切换到已有分支
-git pull origin [remote_branch]:[local_branch] 	# 从远端服务器中获取某个分支的更新，再与本地指定的分支进行自动合并
-git pull origin [remote_branch] 								# 如果远程指定的分支和本地指定的分支相同，直接pull更新
+git branch                                      # 查看本地工程的所有git分支名称
+git branch -r                                   # 查看远端服务器上的分支
+git branch -a                                   # 查看本地和远端的所有分支
+git branch [branch]                             # 新建分支（但不会切换到新分支）
+git branch -d [branch]                          # 删除分支
+git branch -D [branch]                          # 强制删除分支
+git branch -d -r [branch]                       # 删除远端分支
+git checkout [branch]                           # 切换已有分支
+git checkout -b [branch]                        # 新建分支（自动切换到新分支）
+git checkout -f [branch]                        # 强制切换到已有分支
+git pull origin [remote_branch]:[local_branch]  # 从远端服务器中获取某个分支的更新，再与本地指定的分支进行自动合并
+git pull origin [remote_branch]                 # 如果远程指定的分支和本地指定的分支相同，直接pull更新
 git fetch origin [remote_branch]:[local_branch] # 从远端服务器中获取某个分支的更新，但不会进行合并操作，确认fetch内容符合预期后，再决定是否手动合并节点
-git fetch origin [remote_branch] 								# 如果远程指定的分支和本地指定的分支相同，fetch更新
+git fetch origin [remote_branch]                # 如果远程指定的分支和本地指定的分支相同，fetch更新
 
 # 分支合并
-git merge [branch] 	# 从指定的分支合并到当前分支的操作
+git merge [branch]  # 从指定的分支合并到当前分支的操作
 git rebase [branch] # 合并目标分支到当前分支
 
 # 撤销操作
 git reset [commit_id] # 将工作区内容回退到历史提交节点
-git checkout . 				# 用于回退本地所有修改但未提交的内容（有风险，谨慎使用）
-git checkout -[file] 	# 仅回退某个文件的未提交改动
+git checkout .        # 用于回退本地所有修改但未提交的内容（有风险，谨慎使用）
+git checkout -[file]  # 仅回退某个文件的未提交改动
 ```
 
 ## IDEA常用快捷键
