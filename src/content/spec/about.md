@@ -18,7 +18,7 @@
 > - Sep 2023 -- May 2025
 > - Master of Science in Computer Science
 > - GPA: `3.93 / 4.00`
-
+> 
 > ### Tianjin University
 >
 > - Sep 2019 -- Jun 2023
@@ -32,15 +32,13 @@
 > - Jun 2024 -- Aug 2024
 > - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, Maven, MySQL, Kafka, Groovy, YAML
 > - Participated in the design and development of **Huawei Qiankun Cloud**, assisted the team to complete the business development and maintenance, and deployed the new version to the server.
-> - Used Groovy and YAML for writing recipe script to implement Smart Assistant *Xiao Kun* to assist users on digital maps.
-
+> 
 > ### Hangzhou Dingdian Intelligent Computing Technology Co., Ltd
 >
 > - Feb 2024 -- May 2024
 > - **Tech Stack:** Java, Spring, SpringBoot, SpringMVC, MyBatis-Plus, MySQL, YAML
 > - Participated in the development of **Private Cloud Monitoring System** project and assisted the team in completing back-end development and maintenance work.
-> - Designed and implemented responsive user interfaces in the modules of *OS Monitor* and *Service Monitor* using SpringBoot and MyBatis.
-
+> 
 > ### Xiaomi Corporation
 >
 > - Apr 2022 -- Jun 2022
@@ -52,15 +50,10 @@
 > ### Student Union
 >
 > - Aug 2020 -- Jun 2021
-> - Participated in managing relevant documents of various departments and revising the assessment system.
-> - Organized sports meeting, "Fluorescence Night Run" activities and "1024 Programmer’s Day" theme activity, with a total of more than 1,000 students participating.
-
+> 
 > ### Association Committee
 >
 > - Sep 2020 -- Jun 2021
-> - Carried out social practice evaluation work in 2020 and 2021.
-> - A total of more than 2,000 students and teachers participated in the social practice evaluation road show.
-> - A total of 6 practice teams have won school-level practice team honors, 2 have won city-level honors, and 1 has been rated as one of the top-100 practice teams in 2020.
 
 <!-- This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
 
