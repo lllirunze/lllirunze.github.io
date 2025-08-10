@@ -1,5 +1,5 @@
 ---
-title: 雏鹰计划-编程后台操作
+title: 编程后台操作
 published: 2025-04-14
 description: '作为系统管理员，我们需要监控哪些项目？'
 image: ''

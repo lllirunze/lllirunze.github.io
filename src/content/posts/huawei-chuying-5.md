@@ -1,7 +1,7 @@
 ---
-title: huawei-chuying-5
+title: Java实战应用
 published: 2025-04-28
-description: ''
+description: '代理模式是指通过代理对象代替目标对象完成相应操作，并能够在操作执行的前后进行增强处理。'
 image: ''
 tags: ['雏鹰计划', 'java']
 category: 'Guides'
