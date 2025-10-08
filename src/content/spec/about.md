@@ -42,7 +42,7 @@
 > ### Hangzhou Dingdian Intelligent Computing Technology Co., Ltd
 >
 > - Feb 2024 -- May 2024
-> - **Tech Stack:** Java, Spring, SpringBoot, SpringMVC, MyBatis-Plus, MySQL, YAML
+> - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, MySQL, YAML
 > - Participated in the development of **Private Cloud Monitoring System** project and assisted the team in completing back-end development and maintenance work.
 > 
 > ### Xiaomi Corporation
