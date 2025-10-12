@@ -4,16 +4,15 @@
     <p style="text-align: center; margin-top: 24px; margin-bottom: -10px">
       <a href="https://github.com/lllirunze">GitHub</a> | <a href="https://www.linkedin.com/in/runzeli2001/">LinkedIn</a> | <a href="https://stackoverflow.com/users/21977543/lllirunze">Stack Overflow</a> | <a href="/docs/resume.pdf">CV</a>
     </p>
-    <p>I'm a Master of Science student in Computer Science at NYU, and I'm working in Huawei as a software engineer. My passion for badminton🏸 fuels my determination, and I'm always open to connecting for inquiries. Feel free to <a href="mailto:lirunze.me@gmail.com">reach out!</a></p>
     <ul dir="auto">
-      <li>💻 I'm currently using the Linux Platform and programming in Java</li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>💻 I'm currently using the Linux and programming in Java.</li>
+      <li>🔍 I'm exploring LLM and AI Agent tools.</li>
+      <li>💼 Working as a Software Engineer in Huawei ICT.</li>
+      <li>💰 I'm highly motivated to earn money.</li>
+      <li>💡 I'm a code porter with Ctrl-C and Ctrl-V (just kidding).</li>
+      <li>🎓 Education: MSCS in NYU | B.Eng in TJU.</li>
+      <li>🎯 Hobbies: Badminton 🏸, Billiards 🎱, and Werewolf 🐺.</li>
+      <li>😊 Feel free to <a href="mailto:lirunze.me@gmail.com">connect with me!</a></li>
     </ul>
   </div>
   <div style="flex: 3; border-radius: 1rem; display: flex; justify-content: center; align-items: center;">
