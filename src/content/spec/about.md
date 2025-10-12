@@ -5,6 +5,16 @@
       <a href="https://github.com/lllirunze">GitHub</a> | <a href="https://www.linkedin.com/in/runzeli2001/">LinkedIn</a> | <a href="https://stackoverflow.com/users/21977543/lllirunze">Stack Overflow</a> | <a href="/docs/resume.pdf">CV</a>
     </p>
     <p>I'm a Master of Science student in Computer Science at NYU, and I'm working in Huawei as a software engineer. My passion for badminton🏸 fuels my determination, and I'm always open to connecting for inquiries. Feel free to <a href="mailto:lirunze.me@gmail.com">reach out!</a></p>
+    <ul dir="auto">
+      <li>💻 I'm currently using the Linux Platform and programming in Java</li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
   <div style="flex: 3; border-radius: 1rem; display: flex; justify-content: center; align-items: center;">
     <img style="width: 300px; border-radius: 10%; object-fit: cover; border: 1px solid #ddd; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);" src="/profile/suit.jpg" alt="Runze Li">
@@ -38,6 +48,7 @@
 > - Jun 2024 -- Aug 2024
 > - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, Maven, MySQL, Kafka, Groovy, YAML
 > - Participated in the design and development of **Huawei iMaster**, assisted the team to complete the business development and maintenance, and deployed the new version to the server.
+> - Integrated LLM into "NCE-Campus" module for configuration of the tenant, and implemented **AI Agent "Xiao Kun"** to assist users on digital maps.
 > 
 > ### Hangzhou Dingdian Intelligent Computing Technology Co., Ltd
 >
