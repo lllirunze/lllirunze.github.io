@@ -2,7 +2,7 @@
   <div style="flex: 7; padding: 20px;">
     <h1 style="text-align: center; margin-top: 32px; margin-bottom: -10px">Runze Li</h1>
     <p style="text-align: center; margin-top: 24px; margin-bottom: -10px">
-      <a href="https://github.com/lllirunze">GitHub</a> | <a href="https://www.linkedin.com/in/runzeli2001/">LinkedIn</a> | <a href="https://stackoverflow.com/users/21977543/lllirunze">Stack Overflow</a> | <a href="/docs/resume.pdf">CV</a>
+      <a href="https://github.com/lllirunze">GitHub</a> | <a href="https://www.linkedin.com/in/runzeli2001/">LinkedIn</a> | <a href="https://stackoverflow.com/users/21977543/lllirunze">Stack Overflow</a> | <a href="/docs/cv/resume.pdf">CV</a>
     </p>
     <ul dir="auto">
       <li>💻 I'm currently using the Linux and programming in Java.</li>

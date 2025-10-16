@@ -27,3 +27,10 @@ bun.lockb
 yarn.lock
 
 submit.ps1
+
+# LaTeX build files
+*.aux
+*.bbl
+*.synctex.gz
+resume.cls
+resume.tex
