@@ -1,7 +1,7 @@
 ---
 title: JDK21新特性
 published: 2025-10-11
-description: 'JDK21共有15个新特性，这篇文章会挑选其中正式特性进行详细介绍。'
+description: 'JDK21共有15个新特性，这篇文章会介绍一些该版本的正式特性进行详细介绍。'
 image: '../../assets/images/posts/java/jdk21.png'
 tags: ["java", "back-end"]
 category: 'Development'

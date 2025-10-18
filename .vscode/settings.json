@@ -80,5 +80,6 @@
         "tectonic"
       ]
     }
-  ]
+  ],
+  "editor.tabSize": 2
 }
