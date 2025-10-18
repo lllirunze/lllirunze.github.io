@@ -40,26 +40,25 @@
 >
 > - Aug 2025 -- Now
 > - **Tech Stack:** Java, Spring, Jalor6, MyBatis-Plus, Karate, MySQL, Kafka, YAML, Maven, Kubernetes
-> - Responsible for the development of **Huawei eKit**, architected and optimized dozens of northbound interfaces.
+> - Software Engineer
 > 
 > ### Huawei Technologies Co., Ltd
 >
 > - Jun 2024 -- Aug 2024
 > - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, Maven, MySQL, Kafka, Groovy, YAML
-> - Participated in the design and development of **Huawei iMaster**, assisted the team to complete the business development and maintenance, and deployed the new version to the server.
-> - Integrated LLM into "NCE-Campus" module for configuration of the tenant, and implemented **AI Agent "Xiao Kun"** to assist users on digital maps.
+> - Software Engineer Internship
 > 
 > ### Hangzhou Dingdian Intelligent Computing Technology Co., Ltd
 >
 > - Feb 2024 -- May 2024
 > - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, MySQL, YAML
-> - Participated in the development of **Private Cloud Monitoring System** project and assisted the team in completing back-end development and maintenance work.
+> - Software Engineer Intership
 > 
 > ### Xiaomi Corporation
 >
 > - Apr 2022 -- Jun 2022
 > - **Tech Stack:** Java, SpringBoot, MySQL, HTML, CSS, JavaScript, Vue, Node.js
-> - Designed and developed **Web-based multimedia frame player**.
+> - Web Development Internship
 
 ## Leadership Experience
 
