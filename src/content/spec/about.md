@@ -39,36 +39,38 @@
 > ### Huawei Technologies Co., Ltd
 >
 > - Aug 2025 -- Now
-> - **Tech Stack:** Java, Spring, Jalor6, MyBatis-Plus, Karate, MySQL, Kafka, YAML, Maven, Kubernetes
 > - Software Engineer
+> - **Tech Stack:** Java, Spring, Jalor6, MyBatis-Plus, Karate, MySQL, Kafka, YAML, Maven, Jalor, Kubernetes
 > 
 > ### Huawei Technologies Co., Ltd
 >
 > - Jun 2024 -- Aug 2024
-> - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, Maven, MySQL, Kafka, Groovy, YAML
 > - Software Engineer Internship
+> - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, Maven, MySQL, Kafka, Groovy, YAML
 > 
 > ### Hangzhou Dingdian Intelligent Computing Technology Co., Ltd
 >
 > - Feb 2024 -- May 2024
-> - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, MySQL, YAML
 > - Software Engineer Intership
+> - **Tech Stack:** Java, Spring, SpringMVC, MyBatis-Plus, MySQL, YAML
 > 
 > ### Xiaomi Corporation
 >
 > - Apr 2022 -- Jun 2022
-> - **Tech Stack:** Java, SpringBoot, MySQL, HTML, CSS, JavaScript, Vue, Node.js
 > - Web Development Internship
+> - **Tech Stack:** Java, SpringBoot, MySQL, HTML, CSS, JavaScript, Vue, Node.js
 
 ## Leadership Experience
 
 > ### Student Union
 >
 > - Aug 2020 -- Jun 2021
+> - Minister of Organization Department
 > 
 > ### Association Committee
 >
 > - Sep 2020 -- Jun 2021
+> - Director of Social Practice Office
 
 <!-- This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
 
