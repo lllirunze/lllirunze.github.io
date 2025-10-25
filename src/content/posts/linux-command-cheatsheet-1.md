@@ -1,10 +1,10 @@
 ---
 title: Linux Command Cheatsheet-1
-published: 2025-02-27
+published: 2025-10-24
 description: ''
 image: '../../assets/images/posts/linux/linux-profile.jpg'
 tags: ['linux', 'os']
-category: 'Guides'
+category: 'Development'
 draft: false 
 lang: ''
 ---
@@ -178,6 +178,126 @@ cp <file> <dir>     # 复制文件
 cp -r <dir1> <dir2> # 递归复制目录
 cp -i <file> <dir>  # 提示覆盖文件
 ```
+
+### `cd`
+
+`cd` 是Linux中用于切换当前工作目录的命令，是文件系统操作中最常用的命令之一。
+
+```shell
+cd <dir>  # 切换到目标目录（可以是绝对路径或相对路径）
+cd        # 切换到主目录
+cd /      # 切换到根目录
+cd ..     # 切换到上一级目录
+cd .      # 在当前目录，不会移动
+cd -      # 返回上一次所在的目录
+```
+
+### `pwd`
+
+`pwd` 用于打印当前工作目录，显示的是目前所在的绝对路径。
+
+```shell
+pwd       # 显示当前目录的绝对路径
+pwd -P    # 显示物理路径
+pwd -L    # 显示逻辑路径
+```
+
+### `ls`
+
+`ls` 用于列出目录内容，显示当前目录或者指定目录下的文件和文件夹名称，并通过选项显示更多信息（如权限、大小、修改时间等）。
+
+```shell
+ls <option> <dir>
+```
+
+- option: 控制显示方式
+  - `-a`: 显示所有文件
+  - `-l`: 以长列表格式显示
+  - `-lh`: 以人类可读的方式显示文件大小，例如KB、MB
+  - `-la`: 同时显示隐藏文件与长列表格式
+  - `-R`: 递推显示子目录内容
+  - `-t`: 按修改时间排序
+  - `-S`: 按文件大小排序
+  - `-r`: 反向排序
+- dir: 查看的目录，默认为当前目录
+
+### `tree`
+
+**`tree`** 用于以树状结构显示目录内容。它可以清晰地展示文件夹之间的层级关系，非常适合查看项目结构、配置文档或代码目录。
+
+```shell
+tree <option> <dir>
+```
+
+- `-a`: 显示所有文件
+- `-d`: 只显示目录，不显示文件
+- `-L n`: 限制显示层级为n层
+- `-f`: 显示每个文件的完整路径
+- `--dirsfirst`: 让目录优先显示在文件之前
+- `-I pattern`: 忽略匹配的文件或目录
+
+输出的结果如下：
+
+```
+project/
+├── data
+│   ├── input.csv
+│   └── output.csv
+├── src
+│   ├── main.py
+│   └── utils.py
+└── README.md
+```
+
+### `stat`
+
+`stat` 用于显示文件或文件系统的详细状态信息。
+
+```shell
+stat example.txt
+```
+
+输出：
+
+```
+  File: example.txt
+  Size: 2048       Blocks: 8          IO Block: 4096   regular file
+Device: 802h/2050d Inode: 1234567     Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 501/ ryan)   Gid: (  20/   staff)
+Access: 2025-10-24 21:52:30.000000000 +0800
+Modify: 2025-10-24 21:45:18.000000000 +0800
+Change: 2025-10-24 21:45:19.000000000 +0800
+ Birth: 2025-10-22 09:12:00.000000000 +0800
+```
+
+- Access: 最后一次读取文件的时间
+- Modify: 最后一次修改文件的时间
+- Change: 文件元数据（权限、所有者等）最后一次被更改的时间
+
+### `rename`
+
+`rename` 是 Linux 中用于批量重命名文件的命令，特别适合一次性修改多个文件名（比如批量替换、添加前缀/后缀、大小写转换等）。
+
+```shell
+rename 's/原模式/新模式/' <file_list>
+rename 's/\.txt$/.md/' *.txt  # 把所有.txt文件改为.md
+rename 's/^/new_/' *          # 把所有文件名前面加上前缀new_
+rename 's/ /_/g' *            # 所有文件名中的空格改为下划线_
+rename 'y/A-Z/a-z/' *         # 把所有大写字母改为小写
+rename 's/^test_//' test_*    # 去掉所有文件名的前缀test_
+```
+
+### `file`
+
+`file` 用于判断文件类型。它不会依赖文件拓展名（比如.txt, .jpg）而是通过读取文件头magic number来识别文件的真实类型。
+
+```shell
+file <option> <filename>
+```
+
+
+
+
 
 ---
 
