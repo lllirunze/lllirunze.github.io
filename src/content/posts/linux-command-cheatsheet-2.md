@@ -9,6 +9,28 @@ draft: true
 lang: ''
 ---
 
+### `wc`
+
+
+### `split`
+
+
+### `cut`
+
+
+### `paste`
+
+
+### `sort`
+
+
+### `uniq`
+
+
+### `diff_patch`
+
+
+### 
 
 
 ---

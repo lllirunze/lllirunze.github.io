@@ -295,9 +295,124 @@ rename 's/^test_//' test_*    # 去掉所有文件名的前缀test_
 file <option> <filename>
 ```
 
+### `md5sum`
 
+`md5sum`计算文件的MD5校验值，用于验证文件完整性。
 
+```shell
+md5sum file.txt
+# 输出类似：
+# d41d8cd98f00b204e9800998ecf8427e  file.txt
+```
 
+### `find`
+
+`find`递归查找文件或目录，可以按名称、大小、修改时间等条件搜索。
+
+```shell
+find <path> [option] <expression>
+find /home -name "*.txt"  # 在 /home 下查找所有 .txt 文件
+find . -type f -size +10M # 查找当前目录下大于 10MB 的文件
+find /var/log -mtime -3   # 查找 3 天内修改过的日志文件
+```
+
+-	-name <pattern>：按文件名匹配
+- -type <f|d>：搜索文件(f)或目录(d)
+- -size +10M：搜索大于 10MB 的文件
+- -mtime -3：搜索 3 天内修改的文件
+
+### `which`
+
+`which`显示命令的可执行文件路径。
+
+```shell
+which python3
+# 输出：/usr/bin/python3
+```
+
+### `whereis`
+
+`whereis`查找命令的二进制文件、源代码和手册页位置。
+
+```shell
+whereis ls
+# 输出：ls: /bin/ls /usr/share/man/man1/ls.1.gz
+```
+
+### `chown`
+
+`chown`修改文件或目录的所有者与所属组。
+
+```shell
+sudo chown user:group file.txt      # 将 file.txt 所有者改为 user，组改为 group
+sudo chown -R admin:staff /var/www  # 递归修改 /var/www 目录及其子文件权限
+```
+
+### `chmod`
+
+`chmod`修改文件或目录的读、写、执行权限。
+
+```shell
+chmod [OPTION] <mode> <filename>
+chmod 755 run.sh    # 所有者可读写执行，其他人可读执行
+chmod u+x script.sh # 给文件拥有者添加执行权限
+chmod -R 644 *.txt  # 递归设置所有 txt 文件为只读
+```
+
+-	r（读）= 4
+-	w（写）= 2
+-	x（执行）= 1
+
+### `grep`
+
+`grep`在文件中搜索匹配字符串。
+
+```shell
+grep [OPTION] <pattern> <file>
+grep "error" log.txt                 # 查找 log.txt 中包含 “error” 的行
+grep -i "warning" log.txt            # 忽略大小写搜索 “warning”
+grep -rn "main()" ./src              # 递归搜索源码目录中包含 main() 的文件
+```
+
+常用选项：
+
+-	-i：忽略大小写
+-	-n：显示行号
+-	-r：递归搜索目录
+-	-v：显示不匹配的行
+
+### `cat`
+
+`cat`查看文件内容或合并多个文件。
+
+```shell
+cat [OPTION] <filename>
+cat file.txt                         # 显示 file.txt 内容
+cat -n code.c                        # 显示带行号的 code.c 文件
+cat part1.txt part2.txt > all.txt    # 合并两个文件为 all.txt
+```
+
+-n：显示行号
+
+### `head`
+
+`head`显示文件开头的若干行。
+
+```shell
+head [OPTION] <filename>
+head -n 10 data.csv                  # 显示 data.csv 前 10 行
+head -n 1 users.txt                  # 显示文件首行
+```
+
+### `tail`
+
+`tail`显示文件末尾的若干行，常用于查看日志。
+
+```shell
+tail [OPTION] <filename>
+tail -n 20 access.log                # 查看 access.log 最后 20 行
+tail -f /var/log/syslog              # 实时跟踪系统日志输出
+```
 
 ---
 
