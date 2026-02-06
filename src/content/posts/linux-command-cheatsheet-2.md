@@ -5,9 +5,11 @@ description: ''
 image: '../../assets/images/posts/linux/linux-profile.jpg'
 tags: ['linux', 'os']
 category: 'Development'
-draft: true 
+draft: false 
 lang: ''
 ---
+
+## 文档操作命令
 
 ### `wc`
 
@@ -30,8 +32,53 @@ lang: ''
 ### `diff_patch`
 
 
-### 
+### `sed`
 
+
+### `du`
+
+
+### `df`
+
+
+### `tar`
+
+
+### `zip_unzip`
+
+
+## 网络操作命令
+
+### `route`
+
+
+### `ping`
+
+
+### `ifconfig`
+
+
+### `netstat`
+
+
+### `telnet`
+
+
+### `ssh`
+
+
+### `ftp`
+
+
+### `tcpdump`
+
+
+## 用户相关命令
+
+### `su`
+
+
+### `sudo`
 
 ---
 
