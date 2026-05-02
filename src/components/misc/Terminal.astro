@@ -22,16 +22,11 @@
 <!-- ⭐ 引入独立CSS -->
 <link rel="stylesheet" href="/styles/terminal.css" />
 
-<script is:inline>
-  const MAX_LINES = 10;
-  const MAX_HISTORY = 100;
+<script>
+  import { commands } from "../../scripts/terminalCommands";
 
-  const commands = {
-    help: "Commands: help, whoami, skills, hobbies, clear",
-    whoami: "Runze Li",
-    skills: "Java | Spring | Kafka | React | Node.js",
-    hobbies: "🏸 Badminton | 🎱 Billiards | 🐺 Werewolf"
-  };
+  const MAX_LINES = 20;
+  const MAX_HISTORY = 100;
 
   function initTerminal() {
     const body = document.getElementById("terminal-body");
@@ -41,18 +36,38 @@
 
     let history = [];
     let historyIndex = -1;
+    const lineUnits = [];
+    let totalLineUnits = 0;
 
-    function addLine(text) {
+    function getLineUnitCount(text) {
+      return text.split("\n").length;
+    }
+
+    body.querySelectorAll(".line").forEach((el) => {
+      const units = getLineUnitCount(el.textContent || "");
+      lineUnits.push(units);
+      totalLineUnits += units;
+    });
+
+    function addLine(text, extraClass = "") {
       const div = document.createElement("div");
-      div.className = "line";
+      div.className = `line ${extraClass}`.trim();
       div.textContent = text;
 
       body.insertBefore(div, body.lastElementChild);
 
-      const lines = body.querySelectorAll(".line");
-      if (lines.length > MAX_LINES) {
-        lines[0].remove();
+      const currentUnits = getLineUnitCount(text);
+      lineUnits.push(currentUnits);
+      totalLineUnits += currentUnits;
+
+      while (totalLineUnits > MAX_LINES) {
+        const firstLine = body.querySelector(".line");
+        if (!firstLine) break;
+        firstLine.remove();
+        totalLineUnits -= lineUnits.shift() || 0;
       }
+
+      body.scrollTop = body.scrollHeight;
     }
 
     function runCommand(cmd) {
@@ -60,12 +75,15 @@
 
       if (cmd === "clear") {
         body.querySelectorAll(".line").forEach(el => el.remove());
+        lineUnits.length = 0;
+        totalLineUnits = 0;
         return;
       }
 
-      addLine(`$ ${cmd}`);
+      const isKnownCommand = Object.prototype.hasOwnProperty.call(commands, cmd);
+      addLine(`$ ${cmd}`, isKnownCommand ? "line-success" : "line-error");
 
-      const output = commands[cmd] || `command not found: ${cmd}`;
+      const output = isKnownCommand ? commands[cmd] : `command not found: ${cmd}`;
       addLine(output);
 
       history.push(cmd);
