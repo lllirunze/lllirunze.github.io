@@ -1,0 +1,112 @@
+---
+---
+
+<div class="terminal" id="terminal-root">
+  <div class="terminal-header">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
+
+  <div class="terminal-body" id="terminal-body">
+    <div class="line">Welcome to Runze's Terminal 👋</div>
+    <div class="line">Type 'help' to start</div>
+
+    <div class="input-line">
+      <span class="prompt">➜</span>
+      <input id="terminal-input" autocomplete="off" />
+    </div>
+  </div>
+</div>
+
+<!-- ⭐ 引入独立CSS -->
+<link rel="stylesheet" href="/styles/terminal.css" />
+
+<script is:inline>
+  const MAX_LINES = 10;
+  const MAX_HISTORY = 100;
+
+  const commands = {
+    help: "Commands: help, whoami, skills, hobbies, clear",
+    whoami: "Runze Li",
+    skills: "Java | Spring | Kafka | React | Node.js",
+    hobbies: "🏸 Badminton | 🎱 Billiards | 🐺 Werewolf"
+  };
+
+  function initTerminal() {
+    const body = document.getElementById("terminal-body");
+    const input = document.getElementById("terminal-input");
+
+    if (!body || !input) return;
+
+    let history = [];
+    let historyIndex = -1;
+
+    function addLine(text) {
+      const div = document.createElement("div");
+      div.className = "line";
+      div.textContent = text;
+
+      body.insertBefore(div, body.lastElementChild);
+
+      const lines = body.querySelectorAll(".line");
+      if (lines.length > MAX_LINES) {
+        lines[0].remove();
+      }
+    }
+
+    function runCommand(cmd) {
+      if (!cmd) return;
+
+      if (cmd === "clear") {
+        body.querySelectorAll(".line").forEach(el => el.remove());
+        return;
+      }
+
+      addLine(`$ ${cmd}`);
+
+      const output = commands[cmd] || `command not found: ${cmd}`;
+      addLine(output);
+
+      history.push(cmd);
+      if (history.length > MAX_HISTORY) history.shift();
+      historyIndex = -1;
+    }
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        runCommand(input.value.trim());
+        input.value = "";
+      }
+
+      if (e.key === "ArrowUp") {
+        if (history.length === 0) return;
+        historyIndex = historyIndex < 0 ? history.length - 1 : historyIndex - 1;
+        if (historyIndex >= 0) {
+          input.value = history[historyIndex];
+        }
+      }
+
+      if (e.key === "ArrowDown") {
+        historyIndex++;
+        if (historyIndex < history.length) {
+          input.value = history[historyIndex];
+        } else {
+          input.value = "";
+          historyIndex = -1;
+        }
+      }
+    });
+
+    // 点击终端聚焦输入框
+    document.getElementById("terminal-root")
+      ?.addEventListener("click", () => input.focus());
+  }
+
+  // ⭐ Astro 推荐写法：确保 DOM ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTerminal);
+  } else {
+    initTerminal();
+  }
+</script>

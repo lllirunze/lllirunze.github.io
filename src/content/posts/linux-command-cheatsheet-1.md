@@ -1,5 +1,5 @@
 ---
-title: Linux Command Cheatsheet-1
+title: Linux Command Cheatsheet
 published: 2025-10-24
 description: ''
 image: '../../assets/images/posts/linux/linux-profile.jpg'
