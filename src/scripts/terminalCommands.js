@@ -2,6 +2,7 @@ export const commands = {
   help: 
 `[ help       ] Show all available commands
 [ whoami     ] Display my ASCII signature
+[ contact    ] Show my contact information
 [ skills     ] Show my tech stack
 [ hobbies    ] Show my hobbies
 [ education  ] Show my education
@@ -10,19 +11,27 @@ export const commands = {
 [ clear      ] Clear the terminal`,
 
   whoami: 
-`██████╗ ██╗   ██╗███╗   ██╗███████╗███████╗    ██╗     ██╗
+`
+██████╗ ██╗   ██╗███╗   ██╗███████╗███████╗    ██╗     ██╗
 ██╔══██╗██║   ██║████╗  ██║╚══███╔╝██╔════╝    ██║     ██║
 ██████╔╝██║   ██║██╔██╗ ██║  ███╔╝ █████╗      ██║     ██║
 ██╔══██╗██║   ██║██║╚██╗██║ ███╔╝  ██╔══╝      ██║     ██║
 ██║  ██║╚██████╔╝██║ ╚████║███████╗███████╗    ███████╗██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝    ╚══════╝╚═╝`,
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝    ╚══════╝╚═╝
+`,
+
+  contact:
+`[ Email    ] lirunze.me@gmail.com
+[ GitHub   ] github.com/lllirunze
+[ LinkedIn ] linkedin.com/in/runzeli2001/`,
 
   skills: "Java | Spring | Kafka | React | Node.js",
 
   hobbies: "🏸 Badminton | 🎱 Billiards | 🐺 Werewolf",
 
   education:
-`[Education]
+`
+[Education]
 
 New York University
 - Sep 2023 -- May 2025
@@ -35,7 +44,8 @@ Tianjin University
 - GPA: 3.66 / 4.00`,
 
   experience:
-`[Professional Experience]
+`
+[Professional Experience]
 
 Huawei Technologies Co., Ltd
 - Software Engineer (Aug 2025 -- Now)
@@ -50,7 +60,8 @@ Xiaomi Corporation
 - Web Dev Intern (Apr 2022 -- Jun 2022)`,
 
   leadership:
-`[Leadership Experience]
+`
+[Leadership Experience]
 
 Student Union
 - Minister of Organization Department (Aug 2020 -- Jun 2021)
