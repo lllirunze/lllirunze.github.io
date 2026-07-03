@@ -1,0 +1,75 @@
+---
+import '@/styles/about-gallery.css'
+
+const galleryCards = [
+  { id: 1, title: 'Card 01', back: 'Back 01' },
+  { id: 2, title: 'Card 02', back: 'Back 02' },
+  { id: 3, title: 'Card 03', back: 'Back 03' },
+  { id: 4, title: 'Card 04', back: 'Back 04' },
+  { id: 5, title: 'Card 05', back: 'Back 05' },
+  { id: 6, title: 'Card 06', back: 'Back 06' },
+]
+---
+
+<section class="about-gallery mt-10" aria-label="Card gallery">
+  <div class="about-gallery-header">
+    <div>
+      <h2 class="about-gallery-title">Little Gallery</h2>
+      <p class="about-gallery-subtitle">和关于页没什么关系，但挺有意思。</p>
+    </div>
+    <div class="about-gallery-controls">
+      <button
+        type="button"
+        class="about-gallery-button"
+        data-gallery-prev
+        aria-label="Show previous cards"
+      >
+        ←
+      </button>
+      <button
+        type="button"
+        class="about-gallery-button"
+        data-gallery-next
+        aria-label="Show next cards"
+      >
+        →
+      </button>
+    </div>
+  </div>
+
+  <div class="about-gallery-viewport" data-gallery-viewport>
+    <div class="about-gallery-track" data-gallery-track>
+      {galleryCards.map((card) => (
+        <article
+          class="about-gallery-card"
+          data-card-id={card.id}
+          aria-label={card.title}
+        >
+          <button type="button" class="about-gallery-card-inner" aria-label={`Flip ${card.title}`}>
+            <div class="about-gallery-face about-gallery-face-front">
+              <div class="about-gallery-placeholder" aria-hidden="true"></div>
+              <div class="about-gallery-meta">
+                <span class="about-gallery-label">{card.title}</span>
+                <span class="about-gallery-hint">Click to flip</span>
+              </div>
+            </div>
+            <div class="about-gallery-face about-gallery-face-back">
+              <span class="about-gallery-back-tag">Back</span>
+              <p class="about-gallery-back-text">{card.back}</p>
+            </div>
+          </button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import initAboutGallery from '@/scripts/aboutGallery'
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutGallery)
+  } else {
+    initAboutGallery()
+  }
+</script>

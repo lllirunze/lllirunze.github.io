@@ -34,3 +34,5 @@ submit.ps1
 *.synctex.gz
 resume.cls
 resume.tex
+
+.pnpm-store
