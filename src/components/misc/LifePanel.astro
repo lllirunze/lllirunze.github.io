@@ -1,0 +1,359 @@
+---
+import '@/styles/life-panel.css'
+---
+
+<section class="life-panel card-base" aria-labelledby="life-panel-title">
+  <div class="life-panel__header">
+    <div>
+      <h2 id="life-panel-title" class="life-panel__title">Life Timeline</h2>
+      <p class="life-panel__subtitle">
+        From 0 to 30, time drifts between love, duty, motion, and becoming.
+      </p>
+    </div>
+  </div>
+
+  <div class="life-panel__chart-frame">
+    <div
+      id="life-panel-chart"
+      class="life-panel__chart"
+      data-src="/data/life-panel.csv"
+      role="img"
+      aria-label="Stacked area chart showing life time distribution by age"
+    ></div>
+  </div>
+</section>
+
+<script>
+  // @ts-nocheck
+  const ECHARTS_CDN = 'https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js'
+
+  const CATEGORY_META = {
+    family: {
+      label: 'Family',
+      color: '#F6BF85',
+      fill: '#FBE0BF',
+      darkColor: '#C88D57',
+      darkFill: '#5B442F',
+    },
+    study: {
+      label: 'Study',
+      color: '#7DA7F7',
+      fill: '#C7D8FC',
+      darkColor: '#6F8FD6',
+      darkFill: '#33435F',
+    },
+    work: {
+      label: 'Work',
+      color: '#8ED9BF',
+      fill: '#CDEFE2',
+      darkColor: '#75B39C',
+      darkFill: '#314940',
+    },
+    rest: {
+      label: 'Rest',
+      color: '#B8DFA8',
+      fill: '#DDEFD3',
+      darkColor: '#8EB07F',
+      darkFill: '#3A4A35',
+    },
+    games: {
+      label: 'Games',
+      color: '#9B90F2',
+      fill: '#D8D1FB',
+      darkColor: '#8178C9',
+      darkFill: '#3B385B',
+    },
+    badminton: {
+      label: 'Badminton',
+      color: '#F5D37A',
+      fill: '#FAE9B8',
+      darkColor: '#C7A85D',
+      darkFill: '#574A31',
+    },
+    basketball: {
+      label: 'Basketball',
+      color: '#F3A76F',
+      fill: '#F9D4B5',
+      darkColor: '#C68757',
+      darkFill: '#5A4030',
+    },
+    romance: {
+      label: 'Relationships',
+      color: '#F7A9C8',
+      fill: '#FCD7E5',
+      darkColor: '#C8849E',
+      darkFill: '#583744',
+    },
+    anxiety: {
+      label: 'Anxiety',
+      color: '#B39DDB',
+      fill: '#E0D5F2',
+      darkColor: '#8F7CB0',
+      darkFill: '#433A55',
+    },
+    travel: {
+      label: 'Travel',
+      color: '#8FD8E8',
+      fill: '#CDEFF5',
+      darkColor: '#73AEBB',
+      darkFill: '#324A50',
+    },
+  }
+
+  let chartInstance
+  let resizeHandler
+  let themeObserver
+  let latestRows = []
+
+  function parseCsv(text) {
+    const [headerLine, ...rows] = text.trim().split(/\r?\n/)
+    const headers = headerLine.split(',')
+    return rows.map((row) => {
+      const values = row.split(',')
+      return headers.reduce((record, key, index) => {
+        record[key] = Number(values[index])
+        return record
+      }, {})
+    })
+  }
+
+  function normalizePoint(point, keys) {
+    const total = keys.reduce((sum, key) => sum + point[key], 0)
+    if (total <= 0) return point
+
+    let normalizedTotal = 0
+    keys.forEach((key, index) => {
+      if (index === keys.length - 1) {
+        point[key] = Number((100 - normalizedTotal).toFixed(2))
+        return
+      }
+
+      point[key] = Number(((point[key] / total) * 100).toFixed(2))
+      normalizedTotal += point[key]
+    })
+
+    return point
+  }
+
+  function interpolateRows(rows, step = 0.05) {
+    if (rows.length < 2) return rows
+    const keys = Object.keys(rows[0]).filter((key) => key !== 'age')
+    const result = []
+    const ages = rows.map((row) => row.age)
+
+    function smootherstep(t) {
+      return t * t * t * (t * (t * 6 - 15) + 10)
+    }
+
+    for (let index = 0; index < rows.length - 1; index += 1) {
+      const current = rows[index]
+      const next = rows[index + 1]
+      const segmentLength = ages[index + 1] - ages[index]
+
+      for (let age = current.age; age < next.age; age += step) {
+        const progress = (age - current.age) / segmentLength
+        const easedProgress =
+          progress + (smootherstep(progress) - progress) * 0.35
+        const point = { age: Number(age.toFixed(2)) }
+
+        keys.forEach((key) => {
+          const interpolated =
+            current[key] + (next[key] - current[key]) * easedProgress
+          point[key] = Number(Math.max(0, Math.min(100, interpolated)).toFixed(2))
+        })
+
+        result.push(normalizePoint(point, keys))
+      }
+    }
+
+    result.push(normalizePoint({ ...rows.at(-1) }, keys))
+    return result
+  }
+
+  function formatAge(age) {
+    const numericAge = Number(age)
+    return Number.isInteger(numericAge) ? `Age ${numericAge}` : `Age ${numericAge.toFixed(2)}`
+  }
+
+  async function ensureECharts() {
+    if (window.echarts) return window.echarts
+
+    await new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[src="${ECHARTS_CDN}"]`)
+      if (existing) {
+        existing.addEventListener('load', resolve, { once: true })
+        existing.addEventListener('error', reject, { once: true })
+        return
+      }
+
+      const script = document.createElement('script')
+      script.src = ECHARTS_CDN
+      script.async = true
+      script.addEventListener('load', resolve, { once: true })
+      script.addEventListener('error', reject, { once: true })
+      document.head.appendChild(script)
+    })
+
+    return window.echarts
+  }
+
+  function buildOption(rows) {
+    const categories = Object.keys(CATEGORY_META)
+    const isDark = document.documentElement.classList.contains('dark')
+    const interpolatedRows = interpolateRows(rows)
+    const ages = interpolatedRows.map((row) => row.age)
+    const axisTextColor = isDark ? 'rgba(255,255,255,0.68)' : 'rgba(0,0,0,0.58)'
+    const splitLineColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'
+    const tooltipBg = isDark ? 'rgba(22,24,29,0.92)' : 'rgba(255,255,255,0.94)'
+    const borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'
+
+    return {
+      animationDuration: 900,
+      animationEasing: 'cubicOut',
+      color: categories.map((key) => (isDark ? CATEGORY_META[key].darkColor : CATEGORY_META[key].color)),
+      grid: {
+        left: 12,
+        right: 12,
+        top: 40,
+        bottom: 12,
+        containLabel: true,
+      },
+      legend: {
+        top: 0,
+        icon: 'roundRect',
+        itemWidth: 14,
+        itemHeight: 8,
+        textStyle: {
+          color: axisTextColor,
+          fontSize: 12,
+        },
+        data: categories.map((key) => CATEGORY_META[key].label),
+      },
+      tooltip: {
+        trigger: 'axis',
+        confine: true,
+        backgroundColor: tooltipBg,
+        borderColor,
+        borderWidth: 1,
+        textStyle: {
+          color: isDark ? '#f5f7fb' : '#1f2937',
+        },
+        formatter(params) {
+          const lines = [`<strong>${formatAge(params[0].axisValue)}</strong>`]
+          params.forEach((item) => {
+            lines.push(`${item.marker}${item.seriesName} ${Number(item.value).toFixed(1)}%`)
+          })
+          return lines.join('<br/>')
+        },
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ages,
+        min: 'dataMin',
+        max: 'dataMax',
+        axisLabel: {
+          interval: 0,
+          color: axisTextColor,
+          formatter(value) {
+            const numericValue = Number(value)
+            return Number.isInteger(numericValue) && numericValue % 5 === 0 ? `${numericValue}` : ''
+          },
+        },
+        axisLine: {
+          lineStyle: {
+            color: splitLineColor,
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+      },
+      yAxis: {
+        type: 'value',
+        min: 0,
+        max: 100,
+        axisLabel: {
+          color: axisTextColor,
+          formatter(value) {
+            return `${value}%`
+          },
+        },
+        splitLine: {
+          lineStyle: {
+            color: splitLineColor,
+            type: 'dashed',
+          },
+        },
+      },
+      series: categories.map((key) => ({
+        name: CATEGORY_META[key].label,
+        type: 'line',
+        stack: 'life',
+        symbol: 'none',
+        smooth: false,
+        lineStyle: {
+          width: 0,
+          opacity: 0,
+        },
+        areaStyle: {
+          color: isDark ? CATEGORY_META[key].darkFill : CATEGORY_META[key].fill,
+          opacity: 1,
+        },
+        itemStyle: {
+          color: isDark ? CATEGORY_META[key].darkFill : CATEGORY_META[key].fill,
+          borderWidth: 0,
+        },
+        data: interpolatedRows.map((row) => row[key]),
+      })),
+    }
+  }
+
+  async function initLifePanel() {
+    const chartRoot = document.getElementById('life-panel-chart')
+    if (!chartRoot) return
+
+    try {
+      const echarts = await ensureECharts()
+      const response = await fetch(chartRoot.dataset.src)
+      if (!response.ok) throw new Error(`Failed to fetch CSV: ${response.status}`)
+      const csvText = await response.text()
+      const rows = parseCsv(csvText)
+      latestRows = rows
+
+      chartInstance?.dispose()
+      chartInstance = echarts.init(chartRoot, null, { renderer: 'canvas' })
+      chartInstance.setOption(buildOption(rows))
+
+      if (resizeHandler) {
+        window.removeEventListener('resize', resizeHandler)
+      }
+      resizeHandler = () => chartInstance?.resize()
+      window.addEventListener('resize', resizeHandler)
+
+      if (themeObserver) {
+        themeObserver.disconnect()
+      }
+
+      themeObserver = new MutationObserver(() => {
+        if (!chartInstance || latestRows.length === 0) return
+        chartInstance.setOption(buildOption(latestRows), true)
+        chartInstance.resize()
+      })
+
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      })
+    } catch (error) {
+      chartRoot.innerHTML = '<div class="life-panel__error">Failed to load chart. Please try again later.</div>'
+      console.error(error)
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLifePanel, { once: true })
+  } else {
+    initLifePanel()
+  }
+</script>

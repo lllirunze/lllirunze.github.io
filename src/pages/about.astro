@@ -8,6 +8,7 @@ import I18nKey from '../i18n/i18nKey'
 import Markdown from '@components/misc/Markdown.astro'
 import Terminal from "@components/misc/Terminal.astro";
 import AboutGallery from '@components/misc/AboutGallery.astro'
+import LifePanel from '@components/misc/LifePanel.astro'
 
 const aboutPost = await getEntry('spec', 'about')
 
@@ -20,7 +21,8 @@ const { Content } = await aboutPost.render()
                 <Content />
             </Markdown>
 
-            {/* ⭐ 在这里加 Terminal */}
+            <LifePanel />
+
             <div class="flex justify-center">
                 <Terminal />
             </div>

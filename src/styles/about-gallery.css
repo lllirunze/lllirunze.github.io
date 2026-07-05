@@ -19,15 +19,19 @@
 }
 
 .about-gallery-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: rgb(0 0 0 / 0.9);
+  margin: 0;
+  font-size: 1.65rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: rgb(0 0 0 / 0.86);
 }
 
 .about-gallery-subtitle {
-  margin-top: 0.3rem;
-  font-size: 0.92rem;
-  color: rgb(0 0 0 / 0.56);
+  margin: 0.55rem 0 0;
+  max-width: 52rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgb(0 0 0 / 0.58);
 }
 
 .about-gallery-controls {
@@ -72,7 +76,7 @@
 }
 
 :root.dark .about-gallery-subtitle {
-  color: rgb(255 255 255 / 0.58);
+  color: rgb(255 255 255 / 0.64);
 }
 
 .about-gallery-viewport {
@@ -199,6 +203,15 @@
 
   .about-gallery-track {
     gap: 0.8rem;
+  }
+
+  .about-gallery-title {
+    font-size: 1.35rem;
+  }
+
+  .about-gallery-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
 
   .about-gallery-card {
