@@ -9,6 +9,8 @@ import Markdown from '@components/misc/Markdown.astro'
 import Terminal from "@components/misc/Terminal.astro";
 import AboutGallery from '@components/misc/AboutGallery.astro'
 import LifePanel from '@components/misc/LifePanel.astro'
+import Map from '@components/widget/Map.astro'
+import WidgetLayout from '@components/widget/WidgetLayout.astro'
 
 const aboutPost = await getEntry('spec', 'about')
 
@@ -22,6 +24,26 @@ const { Content } = await aboutPost.render()
             </Markdown>
 
             <LifePanel />
+
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <Map
+                    name="Footprints"
+                    hideAccent={true}
+                    titleClass="text-base font-semibold"
+                    class="border border-black/10 dark:border-white/10"
+                />
+                <WidgetLayout
+                    name="Skill Tree"
+                    id="skill-tree-placeholder"
+                    hideAccent={true}
+                    titleClass="text-base font-semibold"
+                    class="border border-black/10 dark:border-white/10"
+                >
+                    <div class="flex min-h-[15rem] items-center justify-center text-center text-sm text-neutral-500 dark:text-neutral-400">
+                        Skill tree placeholder
+                    </div>
+                </WidgetLayout>
+            </div>
 
             <div class="flex justify-center">
                 <Terminal />

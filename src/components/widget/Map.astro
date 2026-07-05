@@ -8,15 +8,25 @@ import ChinaMap from "../ChinaMap.jsx"
 const COLLAPSED_HEIGHT = '7.5rem'
 
 interface Props {
+  name?: string
+  hideAccent?: boolean
+  titleClass?: string
   class?: string
   style?: string
 }
+const name = Astro.props.name ?? i18n(I18nKey.track)
+const hideAccent = Astro.props.hideAccent ?? false
+const titleClass = Astro.props.titleClass ?? ''
 const className = Astro.props.class
 const style = Astro.props.style
 ---
 
-<WidgetLayout name={i18n(I18nKey.track)} id="track" collapsedHeight={COLLAPSED_HEIGHT}
+<WidgetLayout name={name} id="track" collapsedHeight={COLLAPSED_HEIGHT}
+                hideAccent={hideAccent}
+                titleClass={titleClass}
                 class={className} style={style}
 >
-    <ChinaMap client:load />
+    <div class="flex justify-center pt-0 pb-0">
+        <ChinaMap client:load />
+    </div>
 </WidgetLayout>

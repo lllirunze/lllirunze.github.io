@@ -104,6 +104,7 @@ import '@/styles/life-panel.css'
   let resizeHandler
   let themeObserver
   let latestRows = []
+  const LIFE_PANEL_HOOK_KEY = '__lifePanelHookBound__'
 
   function parseCsv(text) {
     const [headerLine, ...rows] = text.trim().split(/\r?\n/)
@@ -311,7 +312,11 @@ import '@/styles/life-panel.css'
 
   async function initLifePanel() {
     const chartRoot = document.getElementById('life-panel-chart')
-    if (!chartRoot) return
+    if (!chartRoot) {
+      chartInstance?.dispose()
+      chartInstance = undefined
+      return
+    }
 
     try {
       const echarts = await ensureECharts()
@@ -350,6 +355,24 @@ import '@/styles/life-panel.css'
       console.error(error)
     }
   }
+
+  function bindLifePanelHooks() {
+    if (window[LIFE_PANEL_HOOK_KEY]) return
+    window[LIFE_PANEL_HOOK_KEY] = true
+
+    const setupWithSwup = () => {
+      if (!window?.swup?.hooks) return
+      window.swup.hooks.on('page:view', initLifePanel)
+    }
+
+    if (window?.swup?.hooks) {
+      setupWithSwup()
+    } else {
+      document.addEventListener('swup:enable', setupWithSwup, { once: true })
+    }
+  }
+
+  bindLifePanelHooks()
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLifePanel, { once: true })
