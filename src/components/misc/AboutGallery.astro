@@ -1,21 +1,45 @@
 ---
 import '@/styles/about-gallery.css'
 
-const galleryCards = [
-  { id: 1, title: 'Card 01', back: 'Back 01' },
-  { id: 2, title: 'Card 02', back: 'Back 02' },
-  { id: 3, title: 'Card 03', back: 'Back 03' },
-  { id: 4, title: 'Card 04', back: 'Back 04' },
-  { id: 5, title: 'Card 05', back: 'Back 05' },
-  { id: 6, title: 'Card 06', back: 'Back 06' },
-]
+const frontImages = import.meta.glob('@/assets/images/cards/front/card*.png', {
+  eager: true,
+  import: 'default',
+})
+const backImages = import.meta.glob('@/assets/images/cards/back/card*.png', {
+  eager: true,
+  import: 'default',
+})
+
+const toImageMap = (images) =>
+  Object.fromEntries(
+    Object.entries(images)
+      .map(([path, image]) => {
+        const match = path.match(/card(\d+)\.png$/)
+        if (!match) return null
+        return [Number(match[1]), image]
+      })
+      .filter(Boolean)
+  )
+
+const frontImageMap = toImageMap(frontImages)
+const backImageMap = toImageMap(backImages)
+
+const galleryCards = Array.from({ length: 6 }, (_, index) => {
+  const id = index + 1
+  return {
+    id,
+    title: `Card ${String(id).padStart(2, '0')}`,
+    frontImage: frontImageMap[id],
+    backImage: backImageMap[id],
+  }
+})
 ---
 
 <section class="about-gallery mt-10" aria-label="Card gallery">
   <div class="about-gallery-header">
     <div>
-      <h2 class="about-gallery-title">Little Gallery</h2>
-      <p class="about-gallery-subtitle">和关于页没什么关系，但挺有意思。</p>
+      <h2 class="about-gallery-title">《废土物语》</h2>
+      <p class="about-gallery-subtitle">每一件遗物，都曾属于一个时代。</p>
     </div>
     <div class="about-gallery-controls">
       <button
@@ -46,16 +70,19 @@ const galleryCards = [
           aria-label={card.title}
         >
           <button type="button" class="about-gallery-card-inner" aria-label={`Flip ${card.title}`}>
-            <div class="about-gallery-face about-gallery-face-front">
-              <div class="about-gallery-placeholder" aria-hidden="true"></div>
-              <div class="about-gallery-meta">
-                <span class="about-gallery-label">{card.title}</span>
-                <span class="about-gallery-hint">Click to flip</span>
-              </div>
+            <div class:list={['about-gallery-face', 'about-gallery-face-front', { 'about-gallery-face-media': !!card.frontImage }]}>
+              {card.frontImage ? (
+                <img class="about-gallery-image" src={card.frontImage.src} alt={`${card.title} front`} />
+              ) : (
+                <div class="about-gallery-placeholder" aria-hidden="true"></div>
+              )}
             </div>
-            <div class="about-gallery-face about-gallery-face-back">
-              <span class="about-gallery-back-tag">Back</span>
-              <p class="about-gallery-back-text">{card.back}</p>
+            <div class:list={['about-gallery-face', 'about-gallery-face-back', { 'about-gallery-face-media': !!card.backImage }]}>
+              {card.backImage ? (
+                <img class="about-gallery-image" src={card.backImage.src} alt={`${card.title} back`} />
+              ) : (
+                <div class="about-gallery-placeholder" aria-hidden="true"></div>
+              )}
             </div>
           </button>
         </article>
