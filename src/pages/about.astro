@@ -15,13 +15,13 @@ const { Content } = await aboutPost.render()
 ---
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <div class="card-base z-10 px-9 py-6 relative w-full ">
+        <div class="card-base z-10 px-9 py-6 relative w-full flex flex-col gap-8">
             <Markdown class="mt-2">
                 <Content />
             </Markdown>
 
             {/* ⭐ 在这里加 Terminal */}
-            <div class="mt-8 flex justify-center">
+            <div class="flex justify-center">
                 <Terminal />
             </div>
 
