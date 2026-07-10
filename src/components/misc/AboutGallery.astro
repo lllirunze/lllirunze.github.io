@@ -1,11 +1,11 @@
 ---
 import '@/styles/about-gallery.css'
 
-const frontImages = import.meta.glob('@/assets/images/cards/front/card*.png', {
+const frontImages = import.meta.glob('@/assets/images/cards/front/card*.{avif,png,webp,jpg,jpeg}', {
   eager: true,
   import: 'default',
 })
-const backImages = import.meta.glob('@/assets/images/cards/back/card*.png', {
+const backImages = import.meta.glob('@/assets/images/cards/back/card*.{avif,png,webp,jpg,jpeg}', {
   eager: true,
   import: 'default',
 })
@@ -14,7 +14,7 @@ const toImageMap = (images) =>
   Object.fromEntries(
     Object.entries(images)
       .map(([path, image]) => {
-        const match = path.match(/card(\d+)\.png$/)
+        const match = path.match(/card(\d+)\.(avif|png|webp|jpe?g)$/)
         if (!match) return null
         return [Number(match[1]), image]
       })
