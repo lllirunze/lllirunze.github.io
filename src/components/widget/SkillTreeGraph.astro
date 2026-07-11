@@ -9,6 +9,22 @@ interface Props {
 }
 
 const { layout, variant, ariaLabel } = Astro.props
+
+const skillIcons = import.meta.glob('@assets/images/skill/*.{avif,webp,png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+})
+
+const resolveSkillIcon = (icon: string) => {
+  if (!icon) return ''
+
+  const normalizedIcon = icon.replace(/^\/+/, '').replace(/^skill\//, '')
+  const matchedAsset = Object.entries(skillIcons).find(([path]) => path.endsWith(`/${normalizedIcon}`))?.[1]
+
+  if (!matchedAsset) return icon
+
+  return typeof matchedAsset === 'string' ? matchedAsset : matchedAsset.src
+}
 ---
 
 <div class:list={['skill-tree-shell', variant]} aria-label={ariaLabel}>
@@ -54,7 +70,7 @@ const { layout, variant, ariaLabel } = Astro.props
           aria-label={node.name}
         >
           {node.icon ? (
-            <img src={node.icon} alt="" class="skill-tree-node-icon" />
+            <img src={resolveSkillIcon(node.icon)} alt="" class="skill-tree-node-icon" />
           ) : (
             <span class="skill-tree-node-empty" aria-hidden="true"></span>
           )}
