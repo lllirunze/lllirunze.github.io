@@ -1,0 +1,65 @@
+---
+import { SKILL_LEVEL_COLOR_MAP } from '@constants/skill-levels'
+import type { SkillTreeLayout } from '@utils/skill-tree'
+
+interface Props {
+  layout: SkillTreeLayout
+  variant: 'preview' | 'full'
+  ariaLabel: string
+}
+
+const { layout, variant, ariaLabel } = Astro.props
+---
+
+<div class:list={['skill-tree-shell', variant]} aria-label={ariaLabel}>
+  <div class="skill-tree-canvas">
+    <div class="skill-tree-grid"></div>
+
+    {layout.ringSizes.map((size, index) => (
+      <div
+        class="skill-tree-ring"
+        style={`--ring-size:${size}%;`}
+        aria-hidden="true"
+        data-depth={index + 1}
+      ></div>
+    ))}
+
+    <svg class="skill-tree-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      {layout.edges.map((edge) => {
+        const fromNode = layout.nodes.find((node) => node.id === edge.from)
+        const toNode = layout.nodes.find((node) => node.id === edge.to)
+        if (!fromNode || !toNode) return null
+
+        return (
+          <line
+            class="skill-tree-link"
+            x1={fromNode.x}
+            y1={fromNode.y}
+            x2={toNode.x}
+            y2={toNode.y}
+          />
+        )
+      })}
+    </svg>
+
+    {layout.nodes.map((node) => (
+      <article
+        class:list={['skill-tree-node', variant, `depth-${node.depth}`]}
+        data-name={node.name}
+        style={`--x:${node.x}; --y:${node.y}; --node-color:${SKILL_LEVEL_COLOR_MAP[node.level as keyof typeof SKILL_LEVEL_COLOR_MAP] ?? '#94A3B8'};`}
+      >
+        <button
+          type="button"
+          class="skill-tree-node-button"
+          aria-label={node.name}
+        >
+          {node.icon ? (
+            <img src={node.icon} alt="" class="skill-tree-node-icon" />
+          ) : (
+            <span class="skill-tree-node-empty" aria-hidden="true"></span>
+          )}
+        </button>
+      </article>
+    ))}
+  </div>
+</div>

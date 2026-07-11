@@ -1,0 +1,105 @@
+---
+import { Icon } from 'astro-icon/components'
+import WidgetLayout from './WidgetLayout.astro'
+import SkillTreeGraph from './skill-tree/SkillTreeGraph.astro'
+import { createSkillTreeLayout, loadSkillTreeData } from '@utils/skill-tree'
+import '@/styles/skill-tree.css'
+
+interface Props {
+  name?: string
+  hideAccent?: boolean
+  titleClass?: string
+  class?: string
+  style?: string
+}
+
+const name = Astro.props.name ?? 'Skill Tree'
+const hideAccent = Astro.props.hideAccent ?? false
+const titleClass = Astro.props.titleClass ?? ''
+const className = Astro.props.class
+const style = Astro.props.style
+
+const skillTreeRoot = await loadSkillTreeData()
+const previewLayout = createSkillTreeLayout(skillTreeRoot, { maxDepth: 1, variant: 'preview' })
+const fullLayout = createSkillTreeLayout(skillTreeRoot, { variant: 'full' })
+---
+
+<WidgetLayout
+  name={name}
+  id="skill-tree"
+  hideAccent={hideAccent}
+  titleClass={titleClass}
+  class={className}
+  style={style}
+>
+  <div class="skill-tree-toolbar" slot="title-suffix">
+    <button
+      type="button"
+      class="skill-tree-expand-button"
+      data-skill-tree-open
+      aria-label="Expand skill tree"
+      title="Expand skill tree"
+    >
+      <Icon name="material-symbols:open-in-full-rounded" class="text-[1.2rem]" />
+    </button>
+  </div>
+
+  <section class="skill-tree-card" data-skill-tree-card>
+    <SkillTreeGraph layout={previewLayout} variant="preview" ariaLabel="Skill tree preview" />
+
+    <dialog class="skill-tree-dialog" data-skill-tree-dialog>
+      <div class="skill-tree-dialog-panel">
+        <div class="skill-tree-dialog-header">
+          <div>
+            <h3 class="skill-tree-dialog-title">Skill Tree Atlas</h3>
+            <p class="skill-tree-dialog-subtitle">Hover a node to inspect its skill name.</p>
+          </div>
+          <button
+            type="button"
+            class="skill-tree-close-button"
+            data-skill-tree-close
+            aria-label="Close skill tree"
+            title="Close skill tree"
+          >
+            <Icon name="material-symbols:close-rounded" class="text-[1.25rem]" />
+          </button>
+        </div>
+
+        <div class="skill-tree-dialog-body">
+          <SkillTreeGraph layout={fullLayout} variant="full" ariaLabel="Full skill tree" />
+        </div>
+      </div>
+    </dialog>
+  </section>
+</WidgetLayout>
+
+<script>
+  const cards = document.querySelectorAll('[data-skill-tree-card]')
+
+  cards.forEach((card) => {
+    const container = card.closest('widget-layout') ?? card.parentElement
+    const openButton = container?.querySelector('[data-skill-tree-open]')
+    const closeButton = card.querySelector('[data-skill-tree-close]')
+    const dialog = card.querySelector('[data-skill-tree-dialog]')
+
+    if (!(openButton instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return
+
+    const closeDialog = () => dialog.close()
+
+    openButton.addEventListener('click', () => dialog.showModal())
+    closeButton?.addEventListener('click', closeDialog)
+
+    dialog.addEventListener('click', (event) => {
+      const rect = dialog.getBoundingClientRect()
+      const clickedInside =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width
+
+      if (!clickedInside) {
+        closeDialog()
+      }
+    })
+  })
+</script>
