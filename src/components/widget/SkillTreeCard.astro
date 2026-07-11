@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import WidgetLayout from './WidgetLayout.astro'
-import SkillTreeGraph from './skill-tree/SkillTreeGraph.astro'
+import SkillTreeGraph from './SkillTreeGraph.astro'
 import { createSkillTreeLayout, loadSkillTreeData } from '@utils/skill-tree'
 import '@/styles/skill-tree.css'
 
@@ -52,7 +52,7 @@ const fullLayout = createSkillTreeLayout(skillTreeRoot, { variant: 'full' })
         <div class="skill-tree-dialog-header">
           <div>
             <h3 class="skill-tree-dialog-title">Skill Tree Atlas</h3>
-            <p class="skill-tree-dialog-subtitle">Hover a node to inspect its skill name.</p>
+            <p class="skill-tree-dialog-subtitle">Each bright node remembers a craft once learned in silence.</p>
           </div>
           <button
             type="button"
@@ -74,32 +74,54 @@ const fullLayout = createSkillTreeLayout(skillTreeRoot, { variant: 'full' })
 </WidgetLayout>
 
 <script>
-  const cards = document.querySelectorAll('[data-skill-tree-card]')
+  const SKILL_TREE_HOOK_KEY = '__skillTreeHookBound__'
 
-  cards.forEach((card) => {
-    const container = card.closest('widget-layout') ?? card.parentElement
-    const openButton = container?.querySelector('[data-skill-tree-open]')
-    const closeButton = card.querySelector('[data-skill-tree-close]')
-    const dialog = card.querySelector('[data-skill-tree-dialog]')
+  function initSkillTreeCards() {
+    const cards = document.querySelectorAll('[data-skill-tree-card]')
 
-    if (!(openButton instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return
+    cards.forEach((card) => {
+      if (card.dataset.skillTreeBound === 'true') return
 
-    const closeDialog = () => dialog.close()
+      const container = card.closest('widget-layout') ?? card.parentElement
+      const openButton = container?.querySelector('[data-skill-tree-open]')
+      const closeButton = card.querySelector('[data-skill-tree-close]')
+      const dialog = card.querySelector('[data-skill-tree-dialog]')
 
-    openButton.addEventListener('click', () => dialog.showModal())
-    closeButton?.addEventListener('click', closeDialog)
+      if (!(openButton instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return
 
-    dialog.addEventListener('click', (event) => {
-      const rect = dialog.getBoundingClientRect()
-      const clickedInside =
-        rect.top <= event.clientY &&
-        event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX &&
-        event.clientX <= rect.left + rect.width
+      const closeDialog = () => dialog.close()
 
-      if (!clickedInside) {
-        closeDialog()
-      }
+      openButton.addEventListener('click', () => dialog.showModal())
+      closeButton?.addEventListener('click', closeDialog)
+
+      dialog.addEventListener('click', (event) => {
+        const rect = dialog.getBoundingClientRect()
+        const clickedInside =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+
+        if (!clickedInside) {
+          closeDialog()
+        }
+      })
+
+      card.dataset.skillTreeBound = 'true'
     })
-  })
+  }
+
+  function setupWithSwup() {
+    if (!window?.swup?.hooks || window[SKILL_TREE_HOOK_KEY]) return
+    window.swup.hooks.on('page:view', initSkillTreeCards)
+    window[SKILL_TREE_HOOK_KEY] = true
+  }
+
+  if (window?.swup?.hooks) {
+    setupWithSwup()
+    initSkillTreeCards()
+  } else {
+    document.addEventListener('DOMContentLoaded', initSkillTreeCards, { once: true })
+    document.addEventListener('swup:enable', setupWithSwup, { once: true })
+  }
 </script>

@@ -27,6 +27,22 @@
   color: rgba(0, 0, 0, 0.86);
 }
 
+.life-panel__title--accent {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.life-panel__title--accent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.12rem;
+  width: 0.25rem;
+  height: 1.45rem;
+  border-radius: 9999px;
+  background: var(--primary);
+}
+
 :root.dark .life-panel__title {
   color: rgba(255, 255, 255, 0.9);
 }

@@ -71,7 +71,7 @@
   border: none;
   box-shadow: none;
   outline: none;
-  transform: translateY(-3rem);
+  transform: translateY(-2.5rem);
 }
 
 .skill-tree-shell.preview {
