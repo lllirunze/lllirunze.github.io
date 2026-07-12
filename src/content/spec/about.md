@@ -16,6 +16,6 @@
     </ul>
   </div>
   <div style="flex: 3; border-radius: 1rem; display: flex; justify-content: center; align-items: center;">
-    <img style="width: 300px; border-radius: 10%; object-fit: cover; border: 1px solid #ddd; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);" src="/profile/suit.jpg" alt="Runze Li">
+    <img style="width: 300px; border-radius: 10%; object-fit: cover; border: 1px solid #ddd; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);" src="/profile/suit.avif" alt="Runze Li">
   </div>
 </div>
