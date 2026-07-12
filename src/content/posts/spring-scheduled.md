@@ -2,7 +2,7 @@
 title: SpringBoot的定时任务实现方式
 published: 2025-10-11
 description: '在现代软件开发中，定时任务是一种常见的需求，用于执行周期性的任务或在特定的时间点执行任务。SpringBoot提供了简单的定时任务功能，使开发人员能够轻松地管理和执行这些任务。'
-image: '../../assets/images/posts/spring/springboot.jpeg'
+image: '../../assets/images/posts/spring/springboot.webp'
 tags: ["springboot", "back-end"]
 category: 'Development'
 draft: false 

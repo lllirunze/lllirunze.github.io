@@ -2,7 +2,7 @@
 title: JS Introductory Basics
 published: 2025-02-21
 description: 'Master key concepts of JS, functions, event handling and other technologies.'
-image: '../../assets/images/posts/js/javascript-illustration.png'
+image: '../../assets/images/posts/js/javascript-illustration.webp'
 tags: ["javascript", "front-end"]
 category: 'Guides'
 draft: false 
@@ -132,7 +132,7 @@ JavaScript绑定事件有三种方式：
 
 当网页被加载时，浏览器会创建DOM，将HTML结构解析为树形结构。DOM提供了一个编程接口，允许开发者通过JavaScript操作网页元素。
 
-![dom-tree](../../assets/images/posts/js/image-20250122231608774.png)
+![dom-tree](../../assets/images/posts/js/image-20250122231608774.webp)
 
 ### 获取DOM元素
 

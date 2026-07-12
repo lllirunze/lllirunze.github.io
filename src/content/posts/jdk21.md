@@ -2,7 +2,7 @@
 title: JDK21新特性
 published: 2025-10-18
 description: 'JDK21共有15个新特性，这篇文章会介绍一些该版本的正式特性进行详细介绍。'
-image: '../../assets/images/posts/java/jdk21.png'
+image: '../../assets/images/posts/java/jdk21.webp'
 tags: ["java", "back-end"]
 category: 'Development'
 draft: false 
@@ -21,7 +21,7 @@ JDK21是LTS（长期支持版），共有15个新特性：
 
 JDK21在集合框架中新增了`SequencedCollection`, `SequencedSet`, `SequencedMap`接口。
 
-![sequenced-collection](../../assets/images/posts/java/SequencedCollection.png)
+![sequenced-collection](../../assets/images/posts/java/SequencedCollection.webp)
 
 `SequencedCollection`定义的方法如下。它主要定义了在两端添加、删除、获取元素，以及`reverse()`方法。同理，`SequencedMap`也定义了类似方法。
 
@@ -113,7 +113,7 @@ static String formatterPatternSwitch(Object obj) {
 
 虚拟线程的资源分配和调度由 Java 平台实现，它不再直接与 OS 线程强关联，而是直接将平台线程作为载体线程，这使得虚拟线程的可用数量大大增加。
 
-![VT](../../assets/images/posts/java/virtual-threads.png)
+![VT](../../assets/images/posts/java/virtual-threads.webp)
 
 ### 应用场景
 

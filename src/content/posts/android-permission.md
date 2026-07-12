@@ -2,7 +2,7 @@
 title: Android Permission
 published: 2026-02-06
 description: '不要对系统行为做任何假设。'
-image: '../../assets/images/posts/android/android-1.png'
+image: '../../assets/images/posts/android/android-1.webp'
 tags: ["android", "front-end"]
 category: 'Development'
 draft: false 

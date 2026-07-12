@@ -2,7 +2,7 @@
 title: Git Guides
 published: 2025-01-31
 description: 'From beginners to advanced, learn how to effectively manage code versions, collaborate on development.'
-image: '../../assets/images/posts/git/git-github.png'
+image: '../../assets/images/posts/git/git-github.webp'
 tags: ["git"]
 category: 'Guides'
 draft: false 

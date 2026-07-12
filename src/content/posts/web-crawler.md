@@ -2,7 +2,7 @@
 title: Python Crawler
 published: 2025-02-13
 description: 'This blog will cover how to write an efficient web crawler using Python.'
-image: '../../assets/images/posts/crawler/Snipaste_2025-02-13_15-40-02.png'
+image: '../../assets/images/posts/crawler/Snipaste_2025-02-13_15-40-02.webp'
 tags: ['python', 'crawler', 'back-end']
 category: 'Project'
 draft: false 
@@ -114,7 +114,7 @@ for title in all_titles:
   print(link.string)
 ```
 
-![books](../../assets/images/posts/crawler/Snipaste_2025-02-13_21-34-39.png)
+![books](../../assets/images/posts/crawler/Snipaste_2025-02-13_21-34-39.webp)
 
 ---
 

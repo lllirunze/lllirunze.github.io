@@ -2,7 +2,7 @@
 title: CSS Introductory Basics
 published: 2025-01-26
 description: 'Dive into layout, styling and responsive design.'
-image: '../../assets/images/posts/css/1_OFsc0SD55jhi8cjo7aCA4w.jpg'
+image: '../../assets/images/posts/css/1_OFsc0SD55jhi8cjo7aCA4w.webp'
 tags: ["css", "front-end"]
 category: 'Guides'
 draft: false 
@@ -114,7 +114,7 @@ CSS 包含多种属性。您可以在[菜鸟教程](https://www.runoob.com/css/c
 - border： 环绕填充和内容
 - margin： 边框周围的外部空间
 
-![box-model](../../assets/images/posts/css/image-20250121224448072.png)
+![box-model](../../assets/images/posts/css/image-20250121224448072.webp)
 
 ```html
 <style>

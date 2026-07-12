@@ -2,7 +2,7 @@
 title: NJU ICS PA1
 published: 2025-01-30
 description: '南京大学计算机科学与技术系计算机系统基础课程实验-PA1'
-image: '../../assets/images/posts/nju-ics/Snipaste_2025-02-08_23-15-33.png'
+image: '../../assets/images/posts/nju-ics/Snipaste_2025-02-08_23-15-33.webp'
 tags: ['nju-ics']
 category: 'Project'
 draft: false 

@@ -2,7 +2,7 @@
 title: HTML Introductory Basics
 published: 2025-01-24
 description: 'Understand HTML tags, structure and syntax, and master the creation and layout of web content.'
-image: '../../assets/images/posts/html/HTML_Blog-scaled.jpeg'
+image: '../../assets/images/posts/html/HTML_Blog-scaled.webp'
 tags: ["html", "front-end"]
 category: 'Guides'
 draft: false 
@@ -42,7 +42,7 @@ HTML 文档需要遵循特定的结构。下面是一个 HTML 文档的基本示
 </html>
 ```
 
-![visual representation](../../assets/images/posts/html/Snipaste_2025-01-24_22-30-28.png)
+![visual representation](../../assets/images/posts/html/Snipaste_2025-01-24_22-30-28.webp)
 
 ## 常用文本标记
 

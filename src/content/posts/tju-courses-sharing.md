@@ -2,7 +2,7 @@
 title: TJU Course Sharing Project
 published: 2025-02-05
 description: '分享：天津大学课程共享计划。'
-image: '../../assets/images/posts/tju/header.png'
+image: '../../assets/images/posts/tju/header.webp'
 tags: ["tju"]
 category: 'Project'
 draft: false 

@@ -2,7 +2,7 @@
 title: Linux Command Cheatsheet
 published: 2025-10-24
 description: ''
-image: '../../assets/images/posts/linux/linux-profile.jpg'
+image: '../../assets/images/posts/linux/linux-profile.webp'
 tags: ['linux', 'os']
 category: 'Development'
 draft: false 
@@ -68,7 +68,7 @@ linux目录是以树状管理的，我们可以输入`ls /`获得根目录内容
 
 我们可以看到，每个文件的前面包含总共10个字符，一般来说，第2-4位代表用户权限，第5-7位代表组权限，第8-10位代表其他权限。
 
-![linux premission](../../assets/images/posts/linux/Snipaste_2025-02-14_23-21-24.png)
+![linux premission](../../assets/images/posts/linux/Snipaste_2025-02-14_23-21-24.webp)
 
 ## 通配符
 

@@ -2,7 +2,7 @@
 title: What is Neofetch?
 published: 2025-02-08
 description: 'Display detailed information about operating system from the command line.'
-image: '../../assets/images/posts/neofetch/68747470733a2f2f692e696d6775722e636f6d2f5a51493245597a2e706e67.png'
+image: '../../assets/images/posts/neofetch/68747470733a2f2f692e696d6775722e636f6d2f5a51493245597a2e706e67.webp'
 tags: ["neofetch", "terminal"]
 category: 'Plugin'
 draft: false 
@@ -39,7 +39,7 @@ sudo apt-get install neofetch
 
 安装完毕之后，直接在终端中输入`neofetch`的命令就可以了。
 
-![neofetch](../../assets/images/posts/neofetch/Snipaste_2025-02-08_16-48-31.png)
+![neofetch](../../assets/images/posts/neofetch/Snipaste_2025-02-08_16-48-31.webp)
 
 如果我们希望在进入终端的时候直接获得Neofetch的信息，我们可以进行如下配置：
 
