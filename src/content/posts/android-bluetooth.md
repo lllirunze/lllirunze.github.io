@@ -3,7 +3,7 @@ title: 一文搞懂Android蓝牙
 published: 2026-07-12
 description: '从基础概念、权限适配到 BLE 扫描、连接、通信与常见踩坑，系统梳理 Android 蓝牙开发主线。'
 image: '../../assets/images/posts/android/android-1.webp'
-tags: ["android", "bluetooth", "ble", "kotlin"]
+tags: ["android", "bluetooth", "front-end", "kotlin"]
 category: 'Development'
 draft: false
 lang: ''
