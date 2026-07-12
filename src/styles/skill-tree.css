@@ -181,6 +181,10 @@
   --size: 2.7rem;
 }
 
+.skill-tree-node.full.depth-4 {
+  --size: 2.1rem;
+}
+
 .skill-tree-node-button {
   display: flex;
   width: 100%;
@@ -335,5 +339,9 @@
 
   .skill-tree-node.full.depth-3 {
     --size: 2.3rem;
+  }
+
+  .skill-tree-node.full.depth-4 {
+    --size: 1.95rem;
   }
 }
