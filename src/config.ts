@@ -4,7 +4,6 @@ import type {
   ProfileConfig,
   SiteConfig,
 } from './types/config'
-import { LinkPreset } from './types/config'
 
 export const siteConfig: SiteConfig = {
   title: 'lllirunze',
@@ -39,15 +38,24 @@ export const siteConfig: SiteConfig = {
 
 export const navBarConfig: NavBarConfig = {
   links: [
-    LinkPreset.Home,
-    LinkPreset.Archive,
+    {
+      name: '风起',
+      url: '/',
+    },
+    {
+      name: '藏卷',
+      url: '/archive/',
+    },
     {
       name: '拾影',
       url: '/gallery/',
     },
-    LinkPreset.About,
     {
-      name: 'GitHub',
+      name: '此间',
+      url: '/about/',
+    },
+    {
+      name: '星图',
       url: 'https://github.com/lllirunze',          // Internal links should not include the base path, as it is automatically added
       external: true,                               // Show an external link icon and will open in a new tab
     },
