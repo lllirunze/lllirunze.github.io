@@ -1,0 +1,186 @@
+---
+import type { GalleryImage } from '@/data/gallery'
+import { url } from '@utils/url-utils'
+
+interface Props {
+  images: GalleryImage[]
+}
+
+const { images } = Astro.props
+
+type ResolvedGalleryImage = GalleryImage & {
+  alt: string
+}
+
+const resolvedImages: ResolvedGalleryImage[] = images.map((image, index) => ({
+  ...image,
+  src: url(image.src),
+  alt: `拾影 ${index + 1}`,
+}))
+
+function createColumns(
+  items: ResolvedGalleryImage[],
+  columnCount: number,
+  columnWidth: number,
+  gap: number,
+) {
+  const columns: ResolvedGalleryImage[][] = Array.from(
+    { length: columnCount },
+    () => [],
+  )
+  const heights = Array.from({ length: columnCount }, () => 0)
+
+  for (const image of items) {
+    const shortestColumnIndex = heights.indexOf(Math.min(...heights))
+    const displayHeight = columnWidth * (image.height / image.width)
+
+    columns[shortestColumnIndex].push(image)
+    heights[shortestColumnIndex] += displayHeight + gap
+  }
+
+  return columns
+}
+
+const initialColumns = createColumns(resolvedImages, 3, 384, 12)
+---
+
+<section class="gallery-shell" data-gallery-root>
+  <script type="application/json" data-gallery-payload set:html={JSON.stringify(resolvedImages)} />
+
+  <div class="gallery-columns" data-gallery-columns>
+    {initialColumns.map((column, columnIndex) => (
+      <div class="gallery-column" data-gallery-column>
+        {column.map((image, imageIndex) => (
+          <img
+            class="gallery-image"
+            src={image.src}
+            width={image.width}
+            height={image.height}
+            loading={columnIndex === 0 && imageIndex === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            alt={image.alt}
+          />
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+type GalleryImage = {
+  src: string
+  width: number
+  height: number
+  alt: string
+}
+
+const initializedGalleries = new WeakSet<HTMLElement>()
+
+function getColumnCount(width: number) {
+  if (width < 300) return 1
+  if (width < 380) return 2
+  return 3
+}
+
+function getGap(root: HTMLElement) {
+  const value = getComputedStyle(root).getPropertyValue('--gallery-gap')
+  const parsed = Number.parseFloat(value)
+  return Number.isFinite(parsed) ? parsed : 12
+}
+
+function distributeImages(
+  images: GalleryImage[],
+  columnCount: number,
+  columnWidth: number,
+  gap: number,
+) {
+  const columns: GalleryImage[][] = Array.from({ length: columnCount }, () => [])
+  const heights = Array.from({ length: columnCount }, () => 0)
+
+  for (const image of images) {
+    const shortestColumnIndex = heights.indexOf(Math.min(...heights))
+    const displayHeight = columnWidth * (image.height / image.width)
+
+    columns[shortestColumnIndex].push(image)
+    heights[shortestColumnIndex] += displayHeight + gap
+  }
+
+  return columns
+}
+
+function renderColumns(root: HTMLElement, images: GalleryImage[]) {
+  const columnsElement = root.querySelector<HTMLElement>('[data-gallery-columns]')
+  if (!columnsElement) return
+
+  const gap = getGap(root)
+  const containerWidth = columnsElement.clientWidth
+  const columnCount = getColumnCount(containerWidth)
+  const columnWidth = (containerWidth - gap * (columnCount - 1)) / columnCount
+  const columns = distributeImages(images, columnCount, columnWidth, gap)
+
+  columnsElement.style.gridTemplateColumns = `repeat(${columnCount}, minmax(0, 1fr))`
+  columnsElement.replaceChildren(
+    ...columns.map((column, columnIndex) => {
+      const columnElement = document.createElement('div')
+      columnElement.className = 'gallery-column'
+      columnElement.dataset.galleryColumn = ''
+
+      column.forEach((image, imageIndex) => {
+        const element = document.createElement('img')
+        element.className = 'gallery-image'
+        element.src = image.src
+        element.width = image.width
+        element.height = image.height
+        element.loading = columnIndex === 0 && imageIndex === 0 ? 'eager' : 'lazy'
+        element.decoding = 'async'
+        element.alt = image.alt
+
+        columnElement.append(element)
+      })
+
+      return columnElement
+    }),
+  )
+}
+
+function initGallery(root: HTMLElement) {
+  if (initializedGalleries.has(root)) return
+  initializedGalleries.add(root)
+
+  const payload = root.querySelector<HTMLScriptElement>('[data-gallery-payload]')
+  if (!payload?.textContent) return
+
+  const images = JSON.parse(payload.textContent) as GalleryImage[]
+  let frame = 0
+  let previousColumnCount = 0
+
+  const scheduleRender = () => {
+    window.cancelAnimationFrame(frame)
+    frame = window.requestAnimationFrame(() => {
+      const columnsElement = root.querySelector<HTMLElement>('[data-gallery-columns]')
+      if (!columnsElement) return
+
+      const nextColumnCount = getColumnCount(columnsElement.clientWidth)
+      if (nextColumnCount === previousColumnCount) return
+
+      previousColumnCount = nextColumnCount
+      renderColumns(root, images)
+    })
+  }
+
+  renderColumns(root, images)
+  previousColumnCount = getColumnCount(root.clientWidth)
+
+  window.addEventListener('resize', scheduleRender, { passive: true })
+  document.addEventListener('astro:page-load', scheduleRender)
+}
+
+function initGalleries() {
+  document
+    .querySelectorAll<HTMLElement>('[data-gallery-root]')
+    .forEach((root) => initGallery(root))
+}
+
+initGalleries()
+document.addEventListener('astro:page-load', initGalleries)
+</script>

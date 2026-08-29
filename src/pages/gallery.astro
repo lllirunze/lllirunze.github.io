@@ -1,0 +1,12 @@
+---
+import Gallery from '@components/gallery/Gallery.astro'
+import MainGridLayout from '@layouts/MainGridLayout.astro'
+import { galleryImages } from '@/data/gallery'
+import '@/styles/gallery.css'
+---
+
+<MainGridLayout title="拾影" description="拾影">
+  <section class="gallery-page">
+    <Gallery images={galleryImages} />
+  </section>
+</MainGridLayout>
