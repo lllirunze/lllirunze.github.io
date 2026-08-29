@@ -21,6 +21,16 @@ export const galleryImages: GalleryImage[] = [
     height: 941,
   },
   {
+    src: '/images/gallery/cactus.webp',
+    width: 1122,
+    height: 1402,
+  },
+  {
+    src: '/images/gallery/clock.webp',
+    width: 1402,
+    height: 1122,
+  },
+  {
     src: '/images/gallery/coffee.webp',
     width: 1672,
     height: 941,
@@ -36,9 +46,34 @@ export const galleryImages: GalleryImage[] = [
     height: 1254,
   },
   {
+    src: '/images/gallery/duck.webp',
+    width: 1122,
+    height: 1402,
+  },
+  {
+    src: '/images/gallery/film.webp',
+    width: 1448,
+    height: 1086,
+  },
+  {
+    src: '/images/gallery/game.webp',
+    width: 1448,
+    height: 1086,
+  },
+  {
+    src: '/images/gallery/ghost.webp',
+    width: 1448,
+    height: 1086,
+  },
+  {
     src: '/images/gallery/glass.webp',
     width: 5120,
     height: 2880,
+  },
+  {
+    src: '/images/gallery/headphone.webp',
+    width: 2172,
+    height: 724,
   },
   {
     src: '/images/gallery/java.webp',
@@ -49,6 +84,16 @@ export const galleryImages: GalleryImage[] = [
     src: '/images/gallery/key.webp',
     width: 1672,
     height: 941,
+  },
+  {
+    src: '/images/gallery/lemon.webp',
+    width: 1448,
+    height: 1086,
+  },
+  {
+    src: '/images/gallery/light.webp',
+    width: 1536,
+    height: 1024,
   },
   {
     src: '/images/gallery/pen.webp',
@@ -64,5 +109,10 @@ export const galleryImages: GalleryImage[] = [
     src: '/images/gallery/tsunade.webp',
     width: 1122,
     height: 1402,
+  },
+  {
+    src: '/images/gallery/umbrella.webp',
+    width: 1402,
+    height: 1122,
   },
 ]

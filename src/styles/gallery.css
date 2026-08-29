@@ -37,13 +37,23 @@
   gap: var(--gallery-gap);
 }
 
+.gallery-image-frame {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
 .gallery-image {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 10px;
-  background: var(--card-bg);
   cursor: zoom-in;
+  transition: transform 240ms ease;
+}
+
+.gallery-image-frame:hover .gallery-image {
+  transform: scale(1.045);
 }
 
 @media (max-width: 899px) {

@@ -51,15 +51,17 @@ const initialColumns = createColumns(resolvedImages, 3, 384, 12)
     {initialColumns.map((column, columnIndex) => (
       <div class="gallery-column" data-gallery-column>
         {column.map((image, imageIndex) => (
-          <img
-            class="gallery-image"
-            src={image.src}
-            width={image.width}
-            height={image.height}
-            loading={columnIndex === 0 && imageIndex === 0 ? 'eager' : 'lazy'}
-            decoding="async"
-            alt={image.alt}
-          />
+          <figure class="gallery-image-frame">
+            <img
+              class="gallery-image"
+              src={image.src}
+              width={image.width}
+              height={image.height}
+              loading={columnIndex === 0 && imageIndex === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              alt={image.alt}
+            />
+          </figure>
         ))}
       </div>
     ))}
@@ -126,6 +128,9 @@ function renderColumns(root: HTMLElement, images: GalleryImage[]) {
       columnElement.dataset.galleryColumn = ''
 
       column.forEach((image, imageIndex) => {
+        const frame = document.createElement('figure')
+        frame.className = 'gallery-image-frame'
+
         const element = document.createElement('img')
         element.className = 'gallery-image'
         element.src = image.src
@@ -135,7 +140,8 @@ function renderColumns(root: HTMLElement, images: GalleryImage[]) {
         element.decoding = 'async'
         element.alt = image.alt
 
-        columnElement.append(element)
+        frame.append(element)
+        columnElement.append(frame)
       })
 
       return columnElement
