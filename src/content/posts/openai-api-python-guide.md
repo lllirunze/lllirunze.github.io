@@ -3,7 +3,7 @@ title: 通过 API 在应用程序中集成大语言模型
 published: 2026-09-06
 description: '以 OpenAI Responses API 与 Python 为例，介绍从基础调用到结构化输出、工具调用、RAG 和生产实践。'
 image: '../../assets/images/posts/ai/gpt.webp'
-tags: ['AI', 'OpenAI', 'Python']
+tags: ['ai', 'OpenAI', 'python']
 category: 'Development'
 draft: false
 lang: 'zh-CN'
