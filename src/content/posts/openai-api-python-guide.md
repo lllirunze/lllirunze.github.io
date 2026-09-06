@@ -5,7 +5,7 @@ description: '以 OpenAI Responses API 与 Python 为例，介绍从基础调用
 image: '../../assets/images/posts/ai/gpt.webp'
 tags: ['AI', 'OpenAI', 'Python']
 category: 'Development'
-draft: true
+draft: false
 lang: 'zh-CN'
 ---
 

@@ -13,14 +13,11 @@ Karate 是一个运行在 Java/JVM 生态里的自动化测试框架，常用于
 
 这篇文章不展开所有细节，只整理 Java 项目里最常用的一条主线：
 
-```text
-Karate
-  ↓ HTTP
-Spring Boot Controller
-  ↓
-真实 Service
-  ↓
-Mock 外部依赖
+```mermaid
+flowchart TB
+    A[Karate] -->|HTTP| B[Spring Boot Controller]
+    B --> C[真实 Service]
+    C --> D[Mock 外部依赖]
 ```
 
 也就是说，Karate 负责从接口外面发起请求，Mock 负责把系统外面的不稳定依赖隔离掉。
@@ -29,14 +26,11 @@ Mock 外部依赖
 
 在一个常见的 Spring Boot 项目里，调用链大概是：
 
-```text
-Controller
-  ↓
-Service
-  ↓
-Client / SDK / DAO
-  ↓
-外部系统
+```mermaid
+flowchart TB
+    A[Controller] --> B[Service]
+    B --> C[Client / SDK / DAO]
+    C --> D[外部系统]
 ```
 
 如果测试时直接依赖真实外部系统，问题会很多：
@@ -49,16 +43,12 @@ Client / SDK / DAO
 
 所以比较实用的接口测试方式是：
 
-```text
-Karate
-  ↓
-Spring Boot
-  ↓
-Controller
-  ↓
-Service
-  ↓
-Mock Client / SDK
+```mermaid
+flowchart TB
+    A[Karate] --> B[Spring Boot]
+    B --> C[Controller]
+    C --> D[Service]
+    D --> E[Mock Client / SDK]
 ```
 
 这样既能让请求真正经过 HTTP、Controller、参数绑定、异常处理和响应序列化，又不需要依赖真实外围系统。
@@ -372,14 +362,11 @@ E2E Test
 
 对于大多数 Spring Boot 微服务，最常用、性价比最高的就是中间这一层：
 
-```text
-Karate
-  ↓ HTTP
-Controller
-  ↓
-Service
-  ↓
-Mock 外部 SDK / RPC / Client
+```mermaid
+flowchart TB
+    A[Karate] -->|HTTP| B[Controller]
+    B --> C[Service]
+    C --> D[Mock 外部 SDK / RPC / Client]
 ```
 
 这样既能覆盖真实接口行为，又能避免被外部系统状态拖住。

@@ -13,18 +13,13 @@ Jenkins 是一个常见的自动化构建与持续集成工具。它通常用于
 
 如果没有 Jenkins，一个项目发布可能需要人工重复执行：
 
-```text
-登录服务器
-  ↓
-拉取最新代码
-  ↓
-执行编译和测试
-  ↓
-打包部署产物
-  ↓
-停止旧服务
-  ↓
-启动新服务
+```mermaid
+flowchart TB
+    A[登录服务器] --> B[拉取最新代码]
+    B --> C[执行编译和测试]
+    C --> D[打包部署产物]
+    D --> E[停止旧服务]
+    E --> F[启动新服务]
 ```
 
 这些步骤不难，但重复、繁琐，并且容易因为人工操作产生问题。Jenkins 的价值，就是把这类流程变成一条稳定、可重复、可追踪的自动化流水线。
@@ -139,28 +134,21 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 进入页面后，可以创建一个最简单的 Freestyle Job：
 
-```text
-新建任务
-  ↓
-Freestyle project
-  ↓
-配置 Git 仓库
-  ↓
-添加 Execute shell
-  ↓
-mvn clean package
+```mermaid
+flowchart TB
+    A[新建任务] --> B[Freestyle project]
+    B --> C[配置 Git 仓库]
+    C --> D[添加 Execute shell]
+    D --> E[mvn clean package]
 ```
 
 这个任务的本质就是：
 
-```text
-Jenkins
-  ↓
-Git Clone
-  ↓
-Maven Build
-  ↓
-生成 Jar
+```mermaid
+flowchart TB
+    A[Jenkins] --> B[Git Clone]
+    B --> C[Maven Build]
+    C --> D[生成 Jar]
 ```
 
 不过当流程变复杂后，页面配置会越来越难维护，所以真实项目更推荐使用 Pipeline。
@@ -187,14 +175,11 @@ pipeline {
 
 它的结构可以理解为：
 
-```text
-Pipeline
-  ↓
-Stages
-  ↓
-Stage
-  ↓
-Steps
+```mermaid
+flowchart TB
+    A[Pipeline] --> B[Stages]
+    B --> C[Stage]
+    C --> D[Steps]
 ```
 
 一个更接近 Java 项目的 Pipeline 示例：
@@ -316,14 +301,11 @@ withCredentials([
 
 如果希望代码提交后自动构建，可以使用 Webhook：
 
-```text
-Developer
-  ↓ git push
-GitLab / GitHub
-  ↓ Webhook
-Jenkins
-  ↓
-Pipeline
+```mermaid
+flowchart TB
+    A[Developer] -->|git push| B[GitLab / GitHub]
+    B -->|Webhook| C[Jenkins]
+    C --> D[Pipeline]
 ```
 
 这样每次代码 Push 后，Git 平台会主动通知 Jenkins，Jenkins 再自动启动构建流程。
@@ -406,12 +388,9 @@ Jenkins 构建失败时，第一反应不应该是“Jenkins 坏了”，而是�
 
 总结一下，Jenkins 的核心不是某个按钮或某个插件，而是这条思路：
 
-```text
-把原本需要人工执行的发布流程
-  ↓
-转换成
-  ↓
-稳定、可重复、可追踪的自动化 Pipeline
+```mermaid
+flowchart TB
+    A[原本需要人工执行的发布流程] -->|转换| B[稳定、可重复、可追踪的自动化 Pipeline]
 ```
 
 理解了这一点，Jenkins 就不再只是“构建按钮”，而是软件工程自动化体系中的一块基础设施。

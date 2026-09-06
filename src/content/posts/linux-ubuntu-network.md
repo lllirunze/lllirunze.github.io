@@ -24,14 +24,11 @@ Shared Network
 
 这时整体网络关系可以理解成：
 
-```text
-Ubuntu
-  ↓
-UTM Shared Network
-  ↓
-MacBook
-  ↓
-Internet
+```mermaid
+flowchart TB
+    A[Ubuntu] --> B[UTM Shared Network]
+    B --> C[MacBook]
+    C --> D[Internet]
 ```
 
 如果 MacBook 上还运行了 Clash，并开启了 HTTP 代理，例如：
@@ -89,14 +86,11 @@ curl -x http://192.168.64.1:7890 https://www.google.com
 
 如果返回了网页内容，或者看到 `200`、`301`、`302` 之类的响应，就说明代理链路已经打通：
 
-```text
-Ubuntu
-  ↓
-192.168.64.1:7890
-  ↓
-MacBook Clash
-  ↓
-Google / ChatGPT / OpenAI
+```mermaid
+flowchart TB
+    A[Ubuntu] --> B[192.168.64.1:7890]
+    B --> C[MacBook Clash]
+    C --> D[Google / ChatGPT / OpenAI]
 ```
 
 如果你不想每次都手写 `-x`，可以临时给终端加上代理环境变量：
