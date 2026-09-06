@@ -211,6 +211,7 @@ import {
 	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 	PAGE_WIDTH
 } from "../constants/constants";
+import {setupMermaid} from "../scripts/mermaid";
 
 /* Preload fonts */
 // (async function() {
@@ -345,6 +346,7 @@ function init() {
 
 /* Load settings when entering the site */
 init();
+setupMermaid();
 
 const setup = () => {
 	// TODO: temp solution to change the height of the banner

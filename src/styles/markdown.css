@@ -87,3 +87,37 @@
 
     }
 }
+
+.mermaid-diagram {
+    @apply my-6 flex justify-center overflow-x-auto rounded-xl p-4;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.mermaid-diagram svg {
+    @apply h-auto max-w-full;
+}
+
+html.dark .mermaid-diagram {
+    background-color: #24292e;
+}
+
+html:not(.dark) .astro-code,
+html:not(.dark) .astro-code span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+}
+
+html:not(.dark) .astro-code span.line::before {
+    color: rgb(0 0 0 / 25%) !important;
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+}
+
+html.dark .astro-code span.line::before {
+    color: rgb(255 255 255 / 25%) !important;
+}
