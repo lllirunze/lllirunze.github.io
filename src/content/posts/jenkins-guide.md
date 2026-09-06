@@ -1,5 +1,5 @@
 ---
-title: Jenkins 入门：从构建任务到 CI/CD 流水线
+title: Jenkins：从构建任务到 CI/CD 流水线
 published: 2026-08-29
 description: '精简梳理 Jenkins 的核心概念、Pipeline 写法、凭据管理、Webhook 触发以及 Java 项目中的 CI/CD 实践。'
 image: '../../assets/images/posts/java/jenkins.webp'
