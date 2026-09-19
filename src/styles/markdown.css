@@ -94,12 +94,24 @@
     transition: background-color 0.2s ease;
 }
 
-.mermaid-diagram svg {
+.mermaid-diagram img {
     @apply h-auto max-w-full;
 }
 
 html.dark .mermaid-diagram {
     background-color: #24292e;
+}
+
+.mermaid-diagram-dark {
+    @apply hidden;
+}
+
+html.dark .mermaid-diagram-light {
+    @apply hidden;
+}
+
+html.dark .mermaid-diagram-dark {
+    @apply block;
 }
 
 html:not(.dark) .astro-code,

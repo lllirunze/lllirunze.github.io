@@ -3,7 +3,7 @@ title: 大语言模型的结构化输出与 Schema 约束
 published: 2026-09-19
 description: '介绍如何使用 Structured Outputs、JSON Schema 与 Pydantic，将大语言模型输出转换成可校验、可维护的业务数据。'
 image: '../../assets/images/posts/ai/gpt.webp'
-tags: ['ai', 'OpenAI', 'python']
+tags: ['ai', 'openai', 'python']
 category: 'Development'
 draft: false
 lang: 'zh-CN'

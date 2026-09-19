@@ -8,6 +8,7 @@ import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeComponents from "rehype-components";/* Render the custom directive content */
 import rehypeKatex from "rehype-katex";
+import rehypeMermaid from "rehype-mermaid";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";/* Handle directives */
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
@@ -18,6 +19,10 @@ import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
+import {
+  rehypeMermaidShikiCompat,
+  rehypeMermaidTheme,
+} from "./src/plugins/rehype-mermaid-theme.mjs";
 
 import react from "@astrojs/react";
 
@@ -75,6 +80,21 @@ export default defineConfig({
       parseDirectiveNode,
     ],
     rehypePlugins: [
+      rehypeMermaidShikiCompat,
+      [
+        rehypeMermaid,
+        {
+          strategy: "img-svg",
+          colorScheme: "light",
+          dark: true,
+          mermaidConfig: {
+            theme: "default",
+            background: "#ffffff",
+          },
+          errorFallback: element => element,
+        },
+      ],
+      rehypeMermaidTheme,
       rehypeKatex,
       rehypeSlug,
       [
