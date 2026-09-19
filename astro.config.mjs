@@ -25,6 +25,37 @@ import {
 } from "./src/plugins/rehype-mermaid-theme.mjs";
 
 import react from "@astrojs/react";
+import githubTrendingHandler from "./api/github-trending.ts";
+
+const githubTrendingDevApi = () => ({
+  name: "github-trending-dev-api",
+  configureServer(server) {
+    server.middlewares.use("/api/github-trending", async (request, response, next) => {
+      try {
+        let statusCode = 200;
+        let responseBody;
+        await githubTrendingHandler(request, {
+          setHeader(name, value) {
+            response.setHeader(name, value);
+          },
+          status(code) {
+            statusCode = code;
+            return this;
+          },
+          json(body) {
+            responseBody = body;
+          },
+        });
+
+        response.statusCode = statusCode;
+        response.setHeader("Content-Type", "application/json; charset=utf-8");
+        response.end(JSON.stringify(responseBody));
+      } catch (error) {
+        next(error);
+      }
+    });
+  },
+});
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,7 +71,7 @@ export default defineConfig({
     animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
     // the default value `transition-` cause transition delay
     // when the Tailwind class `transition-all` is used
-    containers: ["main", "#toc"],
+    containers: ["main", "#toc", "#sidebar"],
     smoothScrolling: true,
     cache: true,
     preload: true,
@@ -136,6 +167,7 @@ export default defineConfig({
     ],
   },
   vite: {
+    plugins: [githubTrendingDevApi()],
     build: {
       rollupOptions: {
         onwarn(warning, warn) {

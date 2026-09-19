@@ -1,0 +1,288 @@
+---
+import WidgetLayout from './WidgetLayout.astro'
+
+interface Props {
+  class?: string
+  style?: string
+}
+
+const className = Astro.props.class
+const style = Astro.props.style
+---
+
+<WidgetLayout
+  name="潮汐"
+  id="github-trending"
+  class={className}
+  style={style}
+>
+  <github-trending data-endpoint="/api/github-trending">
+    <div class="trending-list" aria-live="polite" aria-busy="true">
+      {Array.from({ length: 5 }, (_, index) => (
+        <div class="trending-skeleton" aria-hidden="true" data-index={index}>
+          <span class="trending-skeleton-name"></span>
+          <span class="trending-skeleton-description"></span>
+          <span class="trending-skeleton-meta"></span>
+        </div>
+      ))}
+    </div>
+  </github-trending>
+</WidgetLayout>
+
+<script>
+  interface TrendingRepository {
+    owner: string
+    name: string
+    description?: string
+    language?: string
+    stars: number
+    forks: number
+    url: string
+  }
+
+  const languageColors: Record<string, string> = {
+    TypeScript: '#3178c6',
+    JavaScript: '#f1e05a',
+    Python: '#3572a5',
+    Java: '#b07219',
+    Kotlin: '#a97bff',
+    Rust: '#dea584',
+    Go: '#00add8',
+  }
+
+  const truncateDescription = (text: string, maxLength = 60) =>
+    text.length <= maxLength ? text : `${text.slice(0, maxLength).trim()}...`
+
+  const formatCount = (count: number) => {
+    if (count >= 1_000_000) return `${Number((count / 1_000_000).toFixed(1))}m`
+    if (count >= 1_000) return `${Number((count / 1_000).toFixed(1))}k`
+    return String(count)
+  }
+
+  const makeElement = <K extends keyof HTMLElementTagNameMap>(
+    tag: K,
+    className: string,
+    text?: string,
+  ) => {
+    const element = document.createElement(tag)
+    element.className = className
+    if (text !== undefined) element.textContent = text
+    return element
+  }
+
+  let trendingRequest: Promise<TrendingRepository[]> | undefined
+
+  const fetchTrendingOnce = (endpoint: string) => {
+    trendingRequest ??= fetch(endpoint, { cache: 'no-store' }).then(async response => {
+      if (!response.ok) throw new Error('Trending request failed')
+
+      const data = (await response.json()) as {
+        repositories?: TrendingRepository[]
+      }
+      const repositories = data.repositories?.slice(0, 5) ?? []
+      if (repositories.length === 0) throw new Error('Trending is empty')
+      return repositories
+    })
+
+    return trendingRequest
+  }
+
+  class GitHubTrending extends HTMLElement {
+    async connectedCallback() {
+      if (this.dataset.loaded === 'true') return
+      this.dataset.loaded = 'true'
+
+      try {
+        const repositories = await fetchTrendingOnce(
+          this.dataset.endpoint ?? '/api/github-trending',
+        )
+
+        const list = makeElement('div', 'trending-list')
+        for (const repository of repositories) {
+          const link = makeElement('a', 'trending-item')
+          link.href = repository.url
+          link.target = '_blank'
+          link.rel = 'noopener noreferrer'
+          link.ariaLabel = `Open ${repository.owner}/${repository.name} on GitHub`
+
+          const title = makeElement('div', 'trending-name')
+          title.append(
+            makeElement('span', 'trending-owner', repository.owner),
+            makeElement('span', 'trending-slash', ' / '),
+            makeElement('span', 'trending-repository', repository.name),
+          )
+          link.append(title)
+
+          if (repository.description) {
+            link.append(
+              makeElement(
+                'div',
+                'trending-description',
+                truncateDescription(repository.description),
+              ),
+            )
+          }
+
+          const metadata = makeElement('div', 'trending-metadata')
+          if (repository.language) {
+            const language = makeElement('span', 'trending-language')
+            const dot = makeElement('span', 'trending-language-dot')
+            dot.style.backgroundColor = languageColors[repository.language] ?? '#8b949e'
+            language.append(dot, document.createTextNode(repository.language))
+            metadata.append(language)
+          }
+          const repositoryStats = makeElement('span', 'trending-stats')
+          const forks = makeElement('span', 'trending-forks', `⑂ ${formatCount(repository.forks)}`)
+          forks.ariaLabel = `${repository.forks} forks`
+          const stars = makeElement('span', 'trending-stars', `★ ${formatCount(repository.stars)}`)
+          stars.ariaLabel = `${repository.stars} stars`
+          repositoryStats.append(forks, stars)
+          metadata.append(repositoryStats)
+          link.append(metadata)
+          list.append(link)
+        }
+
+        list.setAttribute('aria-live', 'polite')
+        this.replaceChildren(list)
+      } catch {
+        this.closest('widget-layout')?.remove()
+      }
+    }
+  }
+
+  if (!customElements.get('github-trending')) {
+    customElements.define('github-trending', GitHubTrending)
+  }
+</script>
+
+<style is:global>
+  github-trending {
+    display: block;
+  }
+
+  .trending-item {
+    display: block;
+    margin: 0 -0.5rem;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--line-color);
+    border-radius: 0.5rem;
+    color: inherit;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .trending-item:last-child {
+    border-bottom: 0;
+  }
+
+  .trending-item:hover {
+    background: var(--btn-plain-bg-hover);
+    transform: translateX(2px);
+  }
+
+  .trending-name {
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+    color: rgb(23 23 23 / 0.9);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    white-space: nowrap;
+  }
+
+  :root.dark .trending-name {
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .trending-owner,
+  .trending-slash {
+    color: rgb(0 0 0 / 0.5);
+  }
+
+  :root.dark .trending-owner,
+  :root.dark .trending-slash {
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  .trending-repository {
+    font-weight: 600;
+  }
+
+  .trending-item:hover .trending-repository {
+    color: var(--primary);
+  }
+
+  .trending-description {
+    overflow: hidden;
+    margin-bottom: 0.375rem;
+    color: rgb(0 0 0 / 0.5);
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    white-space: nowrap;
+  }
+
+  :root.dark .trending-description {
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  .trending-metadata {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 1rem;
+    color: rgb(0 0 0 / 0.5);
+    font-size: 0.7rem;
+  }
+
+  :root.dark .trending-metadata {
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  .trending-language {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .trending-language-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .trending-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-left: auto;
+  }
+
+  .trending-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.75rem 0;
+  }
+
+  .trending-skeleton:not(:last-child) {
+    border-bottom: 1px solid var(--line-color);
+  }
+
+  .trending-skeleton span {
+    height: 0.65rem;
+    border-radius: 9999px;
+    background: var(--btn-plain-bg-hover);
+    animation: trending-pulse 1.5s ease-in-out infinite;
+  }
+
+  .trending-skeleton-name { width: 68%; }
+  .trending-skeleton-description { width: 92%; }
+  .trending-skeleton-meta { width: 48%; }
+
+  @keyframes trending-pulse {
+    50% { opacity: 0.45; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trending-skeleton span { animation: none; }
+    .trending-item { transition: none; }
+  }
+</style>
