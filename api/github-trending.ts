@@ -1,4 +1,4 @@
-type TrendingRepository = {
+export type TrendingRepository = {
   owner: string
   name: string
   description?: string
@@ -109,6 +109,36 @@ const fetchTrendingMirror = async (): Promise<TrendingRepository[]> => {
   })
 }
 
+export const fetchGitHubTrending = async (): Promise<{
+  repositories: TrendingRepository[]
+  source: string
+}> => {
+  let repositories: TrendingRepository[] = []
+  let source = 'github'
+
+  try {
+    const githubResponse = await fetch(
+      'https://github.com/trending?since=daily',
+      {
+        headers: {
+          Accept: 'text/html',
+          'User-Agent': 'fuwari-blog-trending-card',
+        },
+        signal: AbortSignal.timeout(5_000),
+      },
+    )
+
+    if (!githubResponse.ok) throw new Error('GitHub request failed')
+    repositories = parseTrending(await githubResponse.text())
+  } catch {
+    source = 'github-trending-mirror'
+    repositories = await fetchTrendingMirror()
+  }
+
+  if (repositories.length === 0) throw new Error('No repositories found')
+  return { repositories, source }
+}
+
 export default async function handler(
   request: { method?: string },
   response: ServerResponse,
@@ -119,29 +149,7 @@ export default async function handler(
   }
 
   try {
-    let repositories: TrendingRepository[] = []
-    let source = 'github'
-
-    try {
-      const githubResponse = await fetch(
-        'https://github.com/trending?since=daily',
-        {
-          headers: {
-            Accept: 'text/html',
-            'User-Agent': 'fuwari-blog-trending-card',
-          },
-          signal: AbortSignal.timeout(5_000),
-        },
-      )
-
-      if (!githubResponse.ok) throw new Error('GitHub request failed')
-      repositories = parseTrending(await githubResponse.text())
-    } catch {
-      source = 'github-trending-mirror'
-      repositories = await fetchTrendingMirror()
-    }
-
-    if (repositories.length === 0) throw new Error('No repositories found')
+    const { repositories, source } = await fetchGitHubTrending()
 
     response.setHeader('Cache-Control', 'private, no-store, max-age=0')
     response.setHeader('X-Trending-Source', source)

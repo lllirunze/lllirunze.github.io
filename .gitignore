@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# generated during builds; never commit live Trending data
+public/data/github-trending.json
+
 # generated types
 .astro/
 

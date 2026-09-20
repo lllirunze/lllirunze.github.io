@@ -5,6 +5,9 @@ on:
   # 如果你使用了别的分支名，请按需将 `master` 替换成你的分支名
   push:
     branches: [ master ]
+  # 每 12 小时更新一次 GitHub Trending 快照并重新部署
+  schedule:
+    - cron: '0 */12 * * *'
   # 允许你在 GitHub 上的 Actions 标签中手动触发此“工作流程”
   workflow_dispatch:
 
