@@ -1,4 +1,5 @@
 import sitemap from "@astrojs/sitemap";
+import { unified } from "@astrojs/markdown-remark";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import swup from "@swup/astro";
@@ -101,70 +102,72 @@ export default defineConfig({
       },
       defaultColor: false,
     },
-    remarkPlugins: [
-      remarkMath,
-      remarkReadingTime,
-      remarkExcerpt,
-      remarkGithubAdmonitionsToDirectives,
-      remarkDirective,
-      remarkSectionize,
-      parseDirectiveNode,
-    ],
-    rehypePlugins: [
-      rehypeMermaidShikiCompat,
-      [
-        rehypeMermaid,
-        {
-          strategy: "img-svg",
-          colorScheme: "light",
-          dark: true,
-          mermaidConfig: {
-            theme: "default",
-            background: "#ffffff",
-          },
-          errorFallback: element => element,
-        },
+    processor: unified({
+      remarkPlugins: [
+        remarkMath,
+        remarkReadingTime,
+        remarkExcerpt,
+        remarkGithubAdmonitionsToDirectives,
+        remarkDirective,
+        remarkSectionize,
+        parseDirectiveNode,
       ],
-      rehypeMermaidTheme,
-      rehypeKatex,
-      rehypeSlug,
-      [
-        rehypeComponents,
-        {
-          components: {
-            github: GithubCardComponent,
-            note: (x, y) => AdmonitionComponent(x, y, "note"),
-            tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-            important: (x, y) => AdmonitionComponent(x, y, "important"),
-            caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-            warning: (x, y) => AdmonitionComponent(x, y, "warning"),
-          },
-        },
-      ],
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "append",
-          properties: {
-            className: ["anchor"],
-          },
-          content: {
-            type: "element",
-            tagName: "span",
-            properties: {
-              className: ["anchor-icon"],
-              "data-pagefind-ignore": true,
+      rehypePlugins: [
+        rehypeMermaidShikiCompat,
+        [
+          rehypeMermaid,
+          {
+            strategy: "img-svg",
+            colorScheme: "light",
+            dark: true,
+            mermaidConfig: {
+              theme: "default",
+              background: "#ffffff",
             },
-            children: [
-              {
-                type: "text",
-                value: "#",
-              },
-            ],
+            errorFallback: element => element,
           },
-        },
+        ],
+        rehypeMermaidTheme,
+        rehypeKatex,
+        rehypeSlug,
+        [
+          rehypeComponents,
+          {
+            components: {
+              github: GithubCardComponent,
+              note: (x, y) => AdmonitionComponent(x, y, "note"),
+              tip: (x, y) => AdmonitionComponent(x, y, "tip"),
+              important: (x, y) => AdmonitionComponent(x, y, "important"),
+              caution: (x, y) => AdmonitionComponent(x, y, "caution"),
+              warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+            },
+          },
+        ],
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "append",
+            properties: {
+              className: ["anchor"],
+            },
+            content: {
+              type: "element",
+              tagName: "span",
+              properties: {
+                className: ["anchor-icon"],
+                "data-pagefind-ignore": true,
+              },
+              children: [
+                {
+                  type: "text",
+                  value: "#",
+                },
+              ],
+            },
+          },
+        ],
       ],
-    ],
+    }),
   },
   vite: {
     plugins: [githubTrendingDevApi()],

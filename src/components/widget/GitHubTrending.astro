@@ -10,7 +10,7 @@ const className = Astro.props.class
 const style = Astro.props.style
 const endpoint = import.meta.env.PROD
   ? '/data/github-trending.json'
-  : '/api/github-trending'
+  : '/api/github-trending/'
 ---
 
 <WidgetLayout
@@ -97,7 +97,7 @@ const endpoint = import.meta.env.PROD
 
       try {
         const repositories = await fetchTrendingOnce(
-          this.dataset.endpoint ?? '/api/github-trending',
+          this.dataset.endpoint ?? '/api/github-trending/',
         )
 
         const list = makeElement('div', 'trending-list')
