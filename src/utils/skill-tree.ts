@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
 
 export type SkillTreeNode = {
   id: string
@@ -27,7 +28,7 @@ export type SkillTreeLayout = {
   ringSizes: number[]
 }
 
-const SKILL_TREE_FILE_URL = new URL('../../public/data/skill-tree.ts', import.meta.url)
+const SKILL_TREE_FILE_PATH = resolve(process.cwd(), 'public/data/skill-tree.ts')
 
 const clampNodeLevel = (level: number) => Math.min(5, Math.max(1, Math.round(level)))
 
@@ -39,7 +40,7 @@ const normalizeNode = (node: SkillTreeNode): SkillTreeNode => ({
 })
 
 export async function loadSkillTreeData(): Promise<SkillTreeNode> {
-  const source = await readFile(SKILL_TREE_FILE_URL, 'utf8')
+  const source = await readFile(SKILL_TREE_FILE_PATH, 'utf8')
   const rootDeclaration = 'export const skillTreeRoot'
   const declarationIndex = source.indexOf(rootDeclaration)
 
