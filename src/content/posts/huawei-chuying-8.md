@@ -3,7 +3,7 @@ title: 人工智能基础
 published: 2025-08-03
 description: ''
 image: ''
-tags: ['雏鹰计划', 'ai']
+tags: ['ai']
 category: 'Guides'
 draft: false 
 lang: ''

@@ -3,7 +3,7 @@ title: Java编程入门
 published: 2025-04-25
 description: '基本数据类型在使用时，如果忽略取值范围，会造成代码异常。'
 image: ''
-tags: ['雏鹰计划', 'java']
+tags: ['java']
 category: 'Guides'
 draft: false 
 lang: ''

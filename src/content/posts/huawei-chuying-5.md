@@ -3,7 +3,7 @@ title: Java实战应用
 published: 2025-04-28
 description: '代理模式是指通过代理对象代替目标对象完成相应操作，并能够在操作执行的前后进行增强处理。'
 image: ''
-tags: ['雏鹰计划', 'java']
+tags: ['java']
 category: 'Guides'
 draft: false 
 lang: ''

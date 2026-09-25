@@ -3,7 +3,7 @@ title: 开发者测试入门
 published: 2025-07-23
 description: '单元测试（Unit Test, UT）/模块测试，是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作。'
 image: ''
-tags: ['雏鹰计划', 'unit-test']
+tags: ['dt']
 category: 'Guides'
 draft: false 
 lang: ''

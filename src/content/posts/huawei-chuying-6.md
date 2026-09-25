@@ -3,7 +3,7 @@ title: Java语言编程规范
 published: 2025-07-10
 description: '避免使用魔鬼数字（难以理解的数字或字符串），要使用有意义的常量来代替。'
 image: ''
-tags: ['雏鹰计划', 'java']
+tags: ['java']
 category: 'Guides'
 draft: false 
 lang: ''

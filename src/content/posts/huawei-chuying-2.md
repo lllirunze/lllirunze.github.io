@@ -3,7 +3,7 @@ title: 编程工具演练
 published: 2025-04-08
 description: '该文章讲述企业的代码开发流程。'
 image: ''
-tags: ['雏鹰计划', 'git']
+tags: ['git']
 category: 'Guides'
 draft: false 
 lang: ''

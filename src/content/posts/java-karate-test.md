@@ -3,7 +3,7 @@ title: Java 项目 Karate 测试与 Mock 入门
 published: 2026-08-23
 description: '精简梳理 Karate 在 Java 项目中的位置、Feature 基础语法、Spring Boot 集成方式以及 Mock 使用边界。'
 image: '../../assets/images/posts/java/java.webp'
-tags: ["java", "karate", "back-end"]
+tags: ["java", "karate", "back-end", "dt"]
 category: 'Development'
 draft: false
 lang: ''
