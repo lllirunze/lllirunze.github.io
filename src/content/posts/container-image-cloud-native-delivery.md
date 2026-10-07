@@ -3,7 +3,7 @@ title: 容器镜像与云原生持续交付体系
 published: 2026-09-26
 description: '系统理解应用如何从源代码变成不可变镜像，并通过 Registry、CI/CD、Helm 和 Kubernetes 完成可追踪、可回滚的持续交付。'
 image: '../../assets/images/posts/cloud/cloud.webp'
-tags: ['cloud-native', 'docker', 'ci-cd', 'kubernetes']
+tags: ['cloud-native', 'docker']
 category: 'DevOps'
 draft: false
 lang: 'zh-CN'
