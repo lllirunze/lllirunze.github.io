@@ -3,7 +3,7 @@ title: Kubernetes 资源调度与高级调度体系
 published: 2026-10-07
 description: '从 Filter、Score 和 Bind 出发，系统理解 Kubernetes 如何根据资源、亲和性、污点、拓扑与优先级为 Pod 选择 Node，并扩展到 Volcano 成组调度。'
 image: '../../assets/images/posts/cloud/kubernetes.webp'
-tags: ['cloud-native', 'kubernetes', 'scheduling', 'cce']
+tags: ['cloud-native', 'kubernetes', 'cce']
 category: 'DevOps'
 draft: false
 lang: 'zh-CN'
