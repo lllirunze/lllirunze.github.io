@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blog Writing"
+  short_description: "Write publication-ready posts for this Astro blog"
+  default_prompt: "Use $blog-writing to draft or revise a post for this blog."
