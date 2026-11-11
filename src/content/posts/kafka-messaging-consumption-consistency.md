@@ -1,6 +1,6 @@
 ---
 title: Kafka 分布式消息与消费一致性体系
-published: 2026-11-11
+published: 2026-11-09
 description: '从 Partition、Replica 与 Consumer Group 出发，理解 Kafka 的写入可靠性、Offset 提交、重复消费，以及 Outbox 与端到端一致性边界。'
 image: '../../assets/images/posts/cloud/cloud.webp'
 tags: ['cloud-native', 'kafka']
@@ -662,9 +662,11 @@ Kafka 消息可以携带 Record Header，把 `traceId`、`eventType`、
 一条跨异步边界的调用链。
 
 但不要无限制地把业务数据塞进 Header。Kafka 消息应该偏小，适合传事件元数据
-和业务 Payload；大文件应放对象存储，消息里只保留 Object Key 或 URL。单条
-消息过大会增加 Broker 内存、网络和 Consumer Fetch 压力，甚至被直接拒绝；
-调整大小限制时，要同时核对 Producer、Broker 和 Topic 配置。
+和业务 Payload；大文件应放对象存储，消息里只保留 Object Key 或 URL。对象
+存储的模型、分片上传和临时授权，将在
+[《对象存储与大文件分片传输机制》](/posts/object-storage-multipart-upload/)
+中展开。单条消息过大会增加 Broker 内存、网络和 Consumer Fetch 压力，甚至被
+直接拒绝；调整大小限制时，要同时核对 Producer、Broker 和 Topic 配置。
 
 ## 九、总结
 

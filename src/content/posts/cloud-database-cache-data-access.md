@@ -1,6 +1,6 @@
 ---
 title: 云数据库、缓存与数据访问体系
-published: 2026-11-11
+published: 2026-11-08
 description: '从 RDS、MySQL 索引与事务，到 Redis 缓存模式、一致性、穿透击穿雪崩与连接池容量，建立分层的数据访问体系。'
 image: '../../assets/images/posts/cloud/cloud.webp'
 tags: ['cloud-native', 'mysql', 'redis']
