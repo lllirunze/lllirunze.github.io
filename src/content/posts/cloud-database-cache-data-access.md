@@ -52,6 +52,9 @@ flowchart TB
 这也意味着，多数生产系统不是“MySQL 或 Redis”的二选一，而是让 MySQL 成为
 权威数据源，让 Redis 承担派生状态和性能层。二者的边界会在后文反复出现。
 
+事件如何通过 Kafka 在服务之间异步传递，以及消费端如何保证一致性，将在
+[《Kafka 分布式消息与消费一致性体系》](/posts/kafka-messaging-consumption-consistency/)中展开。
+
 ## 二、RDS 改变了什么，又没有改变什么
 
 RDS（Relational Database Service，关系型数据库服务）是把 MySQL 等关系型
