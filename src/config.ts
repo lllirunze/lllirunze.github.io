@@ -47,10 +47,6 @@ export const navBarConfig: NavBarConfig = {
       url: '/archive/',
     },
     {
-      name: '拾影',
-      url: '/gallery/',
-    },
-    {
       name: '此间',
       url: '/about/',
     },
