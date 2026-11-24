@@ -1,0 +1,35 @@
+---
+import type { RecipeData } from '@utils/recipes/schema'
+import RecipeHeader from './RecipeHeader.astro'
+import RecipeIngredients from './RecipeIngredients.astro'
+import RecipeMethod from './RecipeMethod.astro'
+import RecipePhoto from './RecipePhoto.astro'
+interface Props {
+  data: RecipeData
+  cover: ImageMetadata
+  detail: ImageMetadata
+  position: number
+}
+const { data, cover, detail, position } = Astro.props
+if (data.presentation.template !== 'duet')
+  throw new Error('Expected duet recipe')
+const side = data.presentation.variant.startsWith('large-right')
+  ? 'large-right'
+  : 'large-left'
+const vertical = data.presentation.variant.endsWith('bottom')
+  ? 'small-bottom'
+  : 'small-top'
+---
+<article class="recipe-duet">
+  <div class:list={['recipe-duet-photos', side, vertical]}>
+    <RecipePhoto class="recipe-cover" src={cover} image={data.presentation.cover} role="cover" eager />
+    <RecipePhoto class="recipe-detail" src={detail} image={data.presentation.detail} role="detail" />
+    <RecipeHeader recipe={data.recipe} position={position} />
+  </div>
+  <div class="recipe-duet-writing">
+    <div class="recipe-sections">
+      <RecipeIngredients ingredients={data.ingredients} />
+      <RecipeMethod steps={data.steps} />
+    </div>
+  </div>
+</article>

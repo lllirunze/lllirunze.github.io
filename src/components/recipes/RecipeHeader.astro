@@ -1,0 +1,22 @@
+---
+import type { RecipeData } from '@utils/recipes/schema'
+interface Props {
+  recipe: RecipeData['recipe']
+  position: number
+}
+const { recipe, position } = Astro.props
+const time =
+  recipe.prepMinutes !== undefined && recipe.cookMinutes !== undefined
+    ? `总时间 ${recipe.prepMinutes + recipe.cookMinutes} 分钟`
+    : recipe.prepMinutes !== undefined
+      ? `准备 ${recipe.prepMinutes} 分钟`
+      : recipe.cookMinutes !== undefined
+        ? `烹制 ${recipe.cookMinutes} 分钟`
+        : null
+---
+<header class="recipe-header">
+  <p class="recipe-eyebrow">RECIPE N° {String(position).padStart(2, '0')} · {recipe.category}</p>
+  <h1>{recipe.title}</h1>
+  {recipe.subtitle && <p class="recipe-subtitle">{recipe.subtitle}</p>}
+  <p class="recipe-meta">{recipe.servings} 人份{time && <> <span aria-hidden="true">·</span> {time}</>}</p>
+</header>

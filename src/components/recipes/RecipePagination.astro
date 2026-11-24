@@ -1,0 +1,18 @@
+---
+import type { RecipeEntry } from '@utils/recipes/collection'
+import { url } from '@utils/url-utils'
+interface Props {
+  previous?: RecipeEntry
+  next?: RecipeEntry
+  position: number
+  total: number
+}
+const { previous, next, position, total } = Astro.props
+---
+<nav class="recipe-pagination" aria-label="菜谱翻页">
+  <div>{previous && <a href={url(`/recipes/${previous.id}/`)} rel="prev"><small>上一道</small>{previous.data.recipe.title}</a>}</div>
+  <a class="recipe-page-count" href={url('/recipes/')} aria-label={`返回目录，第 ${position} 道，共 ${total} 道`}>
+    {String(position).padStart(2, '0')} / {String(total).padStart(2, '0')}<small>返回目录</small>
+  </a>
+  <div>{next && <a href={url(`/recipes/${next.id}/`)} rel="next"><small>下一道</small>{next.data.recipe.title}</a>}</div>
+</nav>

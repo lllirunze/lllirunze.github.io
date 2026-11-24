@@ -26,6 +26,7 @@ import {
 } from "./src/plugins/rehype-mermaid-theme.mjs";
 
 import react from "@astrojs/react";
+import yaml from "@rollup/plugin-yaml";
 import githubTrendingHandler from "./api/github-trending.ts";
 
 const githubTrendingDevApi = () => ({
@@ -170,7 +171,7 @@ export default defineConfig({
     }),
   },
   vite: {
-    plugins: [githubTrendingDevApi()],
+    plugins: [yaml(), githubTrendingDevApi()],
     build: {
       rollupOptions: {
         onwarn(warning, warn) {

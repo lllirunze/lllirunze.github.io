@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets'
+import RecipeLayout from '@layouts/RecipeLayout.astro'
+import { getPublishedRecipes } from '@utils/recipes/collection'
+import { resolveRecipeImage } from '@utils/recipes/images'
+import { url } from '@utils/url-utils'
+
+const recipes = await getPublishedRecipes()
+const featured = recipes.filter(entry => entry.data.publication.featured)
+const lead = featured[0] || recipes[0]
+const ordered = lead
+  ? [lead, ...recipes.filter(entry => entry.id !== lead.id)]
+  : []
+---
+<RecipeLayout title="清欢" description="清欢，私人料理与食谱记录。">
+  <div class="recipe-content">
+    <h1 class="recipe-catalog-title">清欢</h1>
+    <p class="recipe-catalog-lead">记下每一道做过的菜，和餐桌上值得留住的滋味。</p>
+    {ordered.length ? (
+      <section aria-labelledby="recipe-list-heading">
+        <h2 id="recipe-list-heading" class="recipe-kicker" style="margin-top: 4rem">ALL RECIPES / 全部菜谱</h2>
+        <div class="recipe-catalog-grid">
+          {ordered.map(entry => {
+            const cover = resolveRecipeImage(entry.id, entry.data.presentation.cover.file)
+            const cook = entry.data.recipe.cookMinutes
+            return <a class="recipe-card" href={url(`/recipes/${entry.id}/`)}>
+              <Image src={cover} alt={entry.data.presentation.cover.alt} widths={[480, 768, 1024, 1440]}
+                sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                loading={entry.id === lead?.id ? 'eager' : 'lazy'} />
+              <p>{entry.data.recipe.category}{cook !== undefined && ` · 烹制 ${cook} 分钟`}</p>
+              <h3>{entry.data.recipe.title}</h3>
+            </a>
+          })}
+        </div>
+      </section>
+    ) : <p class="recipe-empty">第一道菜正在准备中。</p>}
+  </div>
+</RecipeLayout>

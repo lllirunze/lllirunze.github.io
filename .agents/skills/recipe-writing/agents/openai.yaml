@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recipe Writing"
+  short_description: "Write YAML recipes for this Astro blog"
+  default_prompt: "Use $recipe-writing to create or revise a recipe for this blog."

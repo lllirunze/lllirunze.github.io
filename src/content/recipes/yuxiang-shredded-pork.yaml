@@ -1,0 +1,123 @@
+schemaVersion: 1
+
+recipe:
+  title: 鱼香肉丝
+  subtitle: Yuxiang shredded pork
+  category: 家常
+  tags: [川菜, 下饭菜, 酸甜微辣]
+  servings: 2
+  prepMinutes: 20
+  cookMinutes: 10
+
+presentation:
+  template: duet
+  variant: large-right-small-top
+  cover:
+    file: cover.webp
+    alt: 米白色陶盘中盛放着鱼香肉丝，搭配青椒、胡萝卜、木耳与笋丝
+    caption: FIG. 01 / THE FINISHED DISH
+  detail:
+    file: detail.webp
+    alt: 木质菜板上切好的猪肉丝、青椒丝、胡萝卜丝、木耳丝、笋丝及姜蒜末
+    caption: FIG. 02 / INGREDIENT PREPARATION
+
+ingredients:
+  - id: pork
+    name: 猪里脊肉
+    amount: 250
+    unit: 克
+    group: 主料
+  - id: green-pepper
+    name: 青椒
+    amount: 60
+    unit: 克
+    group: 辅料
+  - id: carrot
+    name: 胡萝卜
+    amount: 60
+    unit: 克
+    group: 辅料
+  - id: wood-ear
+    name: 泡发黑木耳
+    amount: 50
+    unit: 克
+    group: 辅料
+  - id: bamboo-shoot
+    name: 熟笋
+    amount: 60
+    unit: 克
+    group: 辅料
+  - id: garlic
+    name: 大蒜
+    amount: 10
+    unit: 克
+    group: 调料
+  - id: ginger
+    name: 生姜
+    amount: 5
+    unit: 克
+    group: 调料
+  - id: scallion
+    name: 葱花
+    amount: 5
+    unit: 克
+    group: 调料
+  - id: pickled-chili
+    name: 泡红椒
+    amount: 20
+    unit: 克
+    group: 调料
+  - id: soy-sauce
+    name: 生抽
+    amount: 15
+    unit: 毫升
+    group: 调料
+  - id: vinegar
+    name: 香醋
+    amount: 20
+    unit: 毫升
+    group: 调料
+  - id: sugar
+    name: 白糖
+    amount: 12
+    unit: 克
+    group: 调料
+  - id: cooking-wine
+    name: 料酒
+    amount: 10
+    unit: 毫升
+    group: 调料
+  - id: starch
+    name: 淀粉
+    amount: 10
+    unit: 克
+    group: 调料
+  - id: oil
+    name: 食用油
+    amount: 25
+    unit: 毫升
+    group: 调料
+  - id: water
+    name: 清水
+    amount: 40
+    unit: 毫升
+    group: 调料
+
+steps:
+  - text: 青椒、胡萝卜、泡发木耳和熟笋切丝，姜、蒜、泡红椒切末，葱切成葱花。另用干净的菜板将里脊肉切丝。
+    uses: [green-pepper, carrot, wood-ear, bamboo-shoot, ginger, garlic, pickled-chili, scallion, pork]
+  - text: 肉丝加入料酒、5 毫升生抽和 6 克淀粉抓匀，腌制 10 分钟。
+    uses: [pork, cooking-wine, soy-sauce, starch]
+  - text: 将剩余的生抽、香醋、白糖、4 克淀粉和清水混合，调成鱼香汁。
+    uses: [soy-sauce, vinegar, sugar, starch, water]
+  - text: 热锅加入约三分之二的食用油，倒入肉丝快速滑炒至熟透，盛出备用。
+    uses: [oil, pork]
+  - text: 加入剩余的油，炒香姜蒜末和泡红椒，再放入胡萝卜、木耳、笋丝和青椒，翻炒至熟。
+    uses: [oil, ginger, garlic, pickled-chili, carrot, wood-ear, bamboo-shoot, green-pepper]
+  - text: 倒回肉丝，将鱼香汁搅匀后倒入锅中，大火翻炒至汤汁浓稠，撒葱花出锅。
+    uses: [pork, soy-sauce, vinegar, sugar, starch, water, scallion]
+
+publication:
+  status: published
+  order: 20
+  featured: false

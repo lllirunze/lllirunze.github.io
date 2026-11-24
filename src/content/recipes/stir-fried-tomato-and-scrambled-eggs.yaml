@@ -1,0 +1,73 @@
+schemaVersion: 1
+
+recipe:
+  title: 番茄炒蛋
+  subtitle: Stir-fried tomato and scrambled eggs
+  category: 家常
+  tags: [快手菜, 家常菜]
+  summary: 鲜嫩的鸡蛋与酸甜多汁的番茄，是一份简单的家常滋味。
+  servings: 2
+  prepMinutes: 5
+  cookMinutes: 10
+
+presentation:
+  template: portrait
+  variant: image-left
+  cover:
+    file: cover.webp
+    alt: 米白色陶盘中盛放着番茄炒蛋，金黄色的鸡蛋与红色番茄点缀着葱花
+    caption: FIG. 01 / THE FINISHED DISH
+
+ingredients:
+  - id: tomato
+    name: 番茄
+    amount: 2
+    unit: 个
+    group: 主料
+
+  - id: egg
+    name: 鸡蛋
+    amount: 3
+    unit: 个
+    group: 主料
+
+  - id: oil
+    name: 食用油
+    amount: 15
+    unit: 毫升
+    group: 调料
+
+  - id: salt
+    name: 盐
+    amount: 2
+    unit: 克
+    group: 调料
+
+  - id: sugar
+    name: 白糖
+    amount: 5
+    unit: 克
+    group: 调料
+
+  - id: scallion
+    name: 葱花
+    note: 少许
+    group: 调料
+
+steps:
+  - text: 番茄洗净切块，鸡蛋打散，葱切成葱花备用。
+    uses: [tomato, egg, scallion]
+
+  - text: 锅中倒入约三分之二的油，油热后倒入蛋液，轻轻翻炒至凝固，盛出备用。
+    uses: [oil, egg]
+
+  - text: 加入剩余的油与番茄，中火炒至番茄软化出汁，再加入盐和白糖调味。
+    uses: [oil, tomato, salt, sugar]
+
+  - text: 倒回炒好的鸡蛋，轻轻翻炒均匀，撒上葱花即可出锅。
+    uses: [egg, tomato, scallion]
+
+publication:
+  status: published
+  order: 10
+  featured: true

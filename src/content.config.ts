@@ -1,6 +1,9 @@
 import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
+import type { Loader } from 'astro/loaders'
 import { z } from 'astro/zod'
+import { recipesLoader } from './utils/recipes/loader'
+import { type RecipeData, recipeSchema } from './utils/recipes/schema'
 
 const postsCollection = defineCollection({
   loader: glob({
@@ -33,10 +36,19 @@ const specCollection = defineCollection({
   }),
 })
 
+const recipesCollection: ReturnType<
+  typeof defineCollection<z.ZodType<RecipeData>, Loader>
+> = defineCollection({
+  loader: recipesLoader(),
+  schema: recipeSchema,
+})
+
 export const collections: {
   posts: typeof postsCollection
   spec: typeof specCollection
+  recipes: typeof recipesCollection
 } = {
   posts: postsCollection,
   spec: specCollection,
+  recipes: recipesCollection,
 }

@@ -1,0 +1,23 @@
+---
+import type { RecipeData } from '@utils/recipes/schema'
+import RecipeHeader from './RecipeHeader.astro'
+import RecipeIngredients from './RecipeIngredients.astro'
+import RecipeMethod from './RecipeMethod.astro'
+import RecipePhoto from './RecipePhoto.astro'
+interface Props {
+  data: RecipeData
+  cover: ImageMetadata
+  position: number
+}
+const { data, cover, position } = Astro.props
+if (data.presentation.template !== 'portrait')
+  throw new Error('Expected portrait recipe')
+---
+<article class:list={['recipe-portrait', data.presentation.variant]}>
+  <RecipeHeader recipe={data.recipe} position={position} />
+  <RecipePhoto class="recipe-cover" src={cover} image={data.presentation.cover} role="cover" eager />
+  <div class="recipe-sections">
+    <RecipeIngredients ingredients={data.ingredients} />
+    <RecipeMethod steps={data.steps} />
+  </div>
+</article>

@@ -1,0 +1,45 @@
+---
+import DuetRecipe from '@components/recipes/DuetRecipe.astro'
+import PortraitRecipe from '@components/recipes/PortraitRecipe.astro'
+import RecipePagination from '@components/recipes/RecipePagination.astro'
+import RecipeLayout from '@layouts/RecipeLayout.astro'
+import { getPublishedRecipes } from '@utils/recipes/collection'
+import { resolveRecipeImage } from '@utils/recipes/images'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (async () => {
+  const entries = await getPublishedRecipes()
+  return entries.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      position: index + 1,
+      total: entries.length,
+      previous: entries[index - 1],
+      next: entries[index + 1],
+    },
+  }))
+}) satisfies GetStaticPaths
+
+const { entry, position, total, previous, next } = Astro.props
+const cover = resolveRecipeImage(entry.id, entry.data.presentation.cover.file)
+const detail =
+  entry.data.presentation.template === 'duet'
+    ? resolveRecipeImage(
+        entry.id,
+        entry.data.presentation.detail.file,
+        entry.filePath,
+        'presentation.detail.file',
+      )
+    : undefined
+---
+<RecipeLayout title={entry.data.recipe.title} description={entry.data.recipe.summary || `${entry.data.recipe.title}的食材与做法`} article>
+  <div class="recipe-content" data-pagefind-body data-pagefind-meta={`title:${entry.data.recipe.title}`}>
+    {entry.data.presentation.template === 'portrait' ? (
+      <PortraitRecipe data={entry.data} cover={cover} position={position} />
+    ) : detail && (
+      <DuetRecipe data={entry.data} cover={cover} detail={detail} position={position} />
+    )}
+    <RecipePagination previous={previous} next={next} position={position} total={total} />
+  </div>
+</RecipeLayout>

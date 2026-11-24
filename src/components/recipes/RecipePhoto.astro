@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets'
+import type { RecipeData } from '@utils/recipes/schema'
+interface Props {
+  src: ImageMetadata
+  image: RecipeData['presentation']['cover']
+  role: 'cover' | 'detail'
+  class?: string
+  eager?: boolean
+  sizes?: string
+}
+const {
+  src,
+  image,
+  role,
+  eager = false,
+  sizes = '(max-width: 900px) 100vw, 60vw',
+} = Astro.props
+const className = Astro.props.class
+---
+<figure class:list={['recipe-figure', className]}>
+  <div class:list={['recipe-photo-frame', `recipe-photo-frame--${role}`]}>
+    <Image src={src} alt={image.alt} widths={[480, 768, 1024, 1440]}
+      sizes={sizes} loading={eager ? 'eager' : 'lazy'} />
+  </div>
+  {image.caption && <figcaption>{image.caption}</figcaption>}
+</figure>

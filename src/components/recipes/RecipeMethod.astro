@@ -1,0 +1,18 @@
+---
+import type { RecipeData } from '@utils/recipes/schema'
+interface Props {
+  steps: RecipeData['steps']
+}
+const { steps } = Astro.props
+---
+<section class="recipe-method" aria-labelledby="method-heading">
+  <h2 id="method-heading">做法 <span>METHOD</span></h2>
+  <ol>
+    {steps.map((step, index) => (
+      <li>
+        <span class="step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <div><p>{step.text}</p>{step.tip && <small>{step.tip}</small>}</div>
+      </li>
+    ))}
+  </ol>
+</section>

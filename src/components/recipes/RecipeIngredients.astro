@@ -1,0 +1,31 @@
+---
+import type { RecipeData } from '@utils/recipes/schema'
+
+interface Props {
+  ingredients: RecipeData['ingredients']
+}
+const { ingredients } = Astro.props
+const groups: { name: string; items: typeof ingredients }[] = []
+for (const ingredient of ingredients) {
+  const name = ingredient.group || ''
+  let group = groups.find(item => item.name === name)
+  if (!group) {
+    group = { name, items: [] }
+    groups.push(group)
+  }
+  group.items.push(ingredient)
+}
+---
+<section class="recipe-ingredients" aria-labelledby="ingredients-heading">
+  <h2 id="ingredients-heading">食材 <span>INGREDIENTS</span></h2>
+  {groups.map(group => (
+    <div class="ingredient-group">
+      {group.name && <h3>{group.name}</h3>}
+      <ul>
+        {group.items.map(item => (
+          <li><span>{item.name}</span><span>{item.note || `${item.amount} ${item.unit}`}</span></li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</section>

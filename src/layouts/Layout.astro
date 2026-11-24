@@ -256,6 +256,37 @@ function disableAnimation() {
 }
 */
 
+type SwupWithRecipeBoundary = {
+  options: {
+    ignoreVisit: (
+      target: string,
+      context: { el?: Element; event?: Event },
+    ) => boolean
+  }
+  recipeBoundaryConfigured?: boolean
+}
+
+function configureRecipeNavigation() {
+  const swup = window.swup as unknown as SwupWithRecipeBoundary | undefined
+  if (!swup || swup.recipeBoundaryConfigured) return
+
+  // The recipe layout has a different outer structure from MainGridLayout.
+  const originalIgnoreVisit = swup.options.ignoreVisit
+  const recipeRoot = url('/recipes/')
+  const isRecipePath = (path: string) =>
+    path === recipeRoot.slice(0, -1) || path.startsWith(recipeRoot)
+
+  swup.options.ignoreVisit = (target, context) => {
+    if (originalIgnoreVisit(target, context)) return true
+    const destination = new URL(target, window.location.href)
+    return isRecipePath(window.location.pathname) || isRecipePath(destination.pathname)
+  }
+  swup.recipeBoundaryConfigured = true
+}
+
+if (window.swup) configureRecipeNavigation()
+else document.addEventListener('swup:enable', configureRecipeNavigation)
+
 const bannerEnabled = !!document.getElementById('banner-wrapper')
 
 function setClickOutsideToClose(panel: string, ignores: string[]) {
